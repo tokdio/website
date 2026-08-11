@@ -4,25 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex" />
     <meta
       name="description"
       content="Turn a customer signal, engineering risk, launch, or growth bottleneck into a reviewable mission brief while authority, evidence, budgets, and human gates stay visible."
     />
     <title>Tokdio — Give us a mission. Keep command.</title>
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Tokdio — Give us a mission. Keep command."
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c101c'/%3E%3Cpath d='M17 21h30M32 21v26' fill='none' stroke='%2355d6ff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E"
     />
-    <meta
-      property="og:description"
-      content="Turn a customer signal, engineering risk, launch, or growth bottleneck into a reviewable mission brief while authority, evidence, budgets, and human gates stay visible."
-    />
-    <meta property="og:url" content="https://www.tokdio.com/" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="canonical" href="https://www.tokdio.com/" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -108,14 +99,14 @@
           @apply bg-white text-ink shadow-[0_0_0_1px_rgba(255,255,255,.2),0_12px_45px_rgba(22,132,255,.22)] hover:-translate-y-0.5;
         }
 
-        .button-primary::before {
-          content: "";
-          @apply absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-blue/20 to-transparent;
-          animation: button-sheen 5.5s ease-in-out infinite;
-        }
-
         .button-secondary {
           @apply border border-white/20 bg-white/[0.03] text-white backdrop-blur hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.07];
+        }
+
+        .button-secondary.is-confirmed {
+          border-color: rgb(184 244 93 / 0.55);
+          color: #b8f45d;
+          transform: none;
         }
 
         .button-primary:disabled,
@@ -140,18 +131,73 @@
         }
 
         .reveal {
-          opacity: 0;
-          transform: translateY(28px);
           transition:
-            opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
-            transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+            opacity 0.52s cubic-bezier(0.2, 0.7, 0.2, 1),
+            transform 0.52s cubic-bezier(0.2, 0.7, 0.2, 1);
           transition-delay: var(--delay, 0ms);
+        }
+
+        .reveal.reveal-pending {
+          opacity: 0;
+          transform: translateY(18px);
         }
 
         .reveal.is-visible {
           opacity: 1;
           transform: translateY(0);
         }
+      }
+
+      .hero-intro {
+        animation: hero-enter 0.58s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.45rem;
+        height: 1px;
+        background: #55d6ff;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.22s ease;
+      }
+
+      .nav-link[aria-current="location"] {
+        color: white;
+      }
+
+      .nav-link[aria-current="location"]::after {
+        transform: scaleX(1);
+      }
+
+      .mobile-menu-panel {
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition:
+          max-height 0.24s ease,
+          opacity 0.18s ease,
+          transform 0.18s ease,
+          visibility 0s linear 0.24s,
+          padding-bottom 0.24s ease;
+      }
+
+      .mobile-menu-panel[data-open="true"] {
+        max-height: 14rem;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        padding-bottom: 1rem;
+        transition-delay: 0s;
       }
 
       .page-grid {
@@ -165,7 +211,6 @@
       .aurora {
         filter: blur(90px);
         opacity: 0.3;
-        animation: aurora-drift 18s ease-in-out infinite alternate;
       }
 
       .hero-orb {
@@ -185,29 +230,10 @@
             rgb(22 132 255 / 0.26),
             transparent 62%
           );
-        animation: orb-breathe 8s ease-in-out infinite;
       }
 
       .mission-console {
-        transform: perspective(1400px) rotateX(1.5deg) rotateY(-1.5deg);
-        transform-style: preserve-3d;
-        transition: transform 0.25s ease-out;
-      }
-
-      .mission-console::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        border-radius: inherit;
-        background: linear-gradient(
-          115deg,
-          transparent 24%,
-          rgb(255 255 255 / 0.07),
-          transparent 45%
-        );
-        transform: translateX(-120%);
-        animation: console-glint 9s ease-in-out infinite;
+        transform: none;
       }
 
       .console-grid {
@@ -219,21 +245,31 @@
 
       .signal-line {
         stroke-dasharray: 10 13;
-        animation: signal-dash 1.8s linear infinite;
       }
 
       .signal-packet {
+        opacity: 0;
         filter: drop-shadow(0 0 8px currentColor);
       }
 
       .packet-one {
         offset-path: path("M 8 105 C 110 20 210 20 320 105 S 515 190 620 105");
-        animation: packet-run 7s linear infinite;
       }
 
       .packet-two {
         offset-path: path("M 8 105 C 110 190 210 190 320 105 S 515 20 620 105");
-        animation: packet-run 7s 3.5s linear infinite;
+      }
+
+      .mission-console.is-stage-changing .signal-line {
+        animation: signal-shift 0.72s ease-out 1;
+      }
+
+      .mission-console.is-stage-changing .packet-one {
+        animation: packet-run 0.9s ease-out 1;
+      }
+
+      .mission-console.is-stage-changing .packet-two {
+        animation: packet-run 0.9s 0.14s ease-out 1;
       }
 
       .hero-stage {
@@ -255,18 +291,6 @@
       .hero-stage[data-complete="true"]::before {
         background: #b8f45d;
         box-shadow: 0 0 9px rgb(184 244 93 / 0.8);
-      }
-
-      .live-card {
-        animation: card-float 6s ease-in-out infinite;
-      }
-
-      .live-card:nth-child(2) {
-        animation-delay: -3s;
-      }
-
-      .status-dot {
-        animation: status-pulse 2s ease-in-out infinite;
       }
 
       .flow-tab {
@@ -309,11 +333,11 @@
       }
 
       .stage-panel.is-changing > * {
-        animation: panel-enter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation: panel-enter 0.34s cubic-bezier(0.2, 0.7, 0.2, 1) both;
       }
 
       .stage-panel.is-changing > *:nth-child(2) {
-        animation-delay: 70ms;
+        animation-delay: 45ms;
       }
 
       .evidence-row {
@@ -324,8 +348,8 @@
       }
 
       .stage-panel.is-changing .evidence-row {
-        animation: evidence-in 0.48s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        animation-delay: calc(var(--row) * 90ms);
+        animation: evidence-in 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: calc(var(--row) * 55ms);
       }
 
       .mission-option[aria-checked="true"] {
@@ -336,23 +360,31 @@
       }
 
       .mission-option[aria-checked="true"] .option-icon {
-        transform: rotate(-5deg) scale(1.08);
+        transform: scale(1.04);
         border-color: rgb(85 214 255 / 0.55);
         background: rgb(22 132 255 / 0.16);
       }
 
       .brief-card.is-changing .brief-value {
-        animation: brief-swap 0.45s ease both;
+        animation: brief-swap 0.28s ease both;
       }
 
-      .approval-scan {
-        animation: approval-scan 4.5s ease-in-out infinite;
+      .brief-result.is-ready {
+        animation: result-enter 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both;
       }
 
       .receipt-line {
         transform-origin: left;
-        animation: receipt-line 4.8s ease-in-out infinite;
-        animation-delay: calc(var(--receipt) * 0.7s);
+      }
+
+      .receipt-proof.reveal-pending .receipt-line {
+        transform: scaleX(0.08);
+        opacity: 0.25;
+      }
+
+      .receipt-proof.is-visible .receipt-line {
+        animation: receipt-line 0.48s ease-out both;
+        animation-delay: calc(var(--receipt) * 90ms);
       }
 
       .budget-ring {
@@ -360,43 +392,6 @@
           #55d6ff 0 72%,
           rgb(255 255 255 / 0.08) 72% 100%
         );
-        animation: ring-glow 3.2s ease-in-out infinite;
-      }
-
-      .institution-card {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .institution-card::after {
-        content: "";
-        position: absolute;
-        inset: -60%;
-        pointer-events: none;
-        background: radial-gradient(
-          circle at center,
-          var(--glow, rgb(22 132 255 / 0.18)),
-          transparent 42%
-        );
-        opacity: 0;
-        transform: scale(0.7);
-        transition:
-          opacity 0.45s ease,
-          transform 0.45s ease;
-      }
-
-      .institution-card:hover::after,
-      .institution-card:focus-within::after {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      .institution-card .institution-mark {
-        transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
-      }
-
-      .institution-card:hover .institution-mark {
-        transform: rotate(-7deg) scale(1.12);
       }
 
       .output-card::before {
@@ -406,64 +401,35 @@
         right: 0;
         top: 0;
         height: 2px;
-        transform: scaleX(0.12);
+        transform: scaleX(1);
         transform-origin: left;
         background: linear-gradient(90deg, #1684ff, #55d6ff, #ff3f8e);
-        transition: transform 0.7s ease;
+        transition: transform 0.48s ease;
+      }
+
+      .output-card.reveal-pending::before {
+        transform: scaleX(0.12);
       }
 
       .output-card.is-visible::before {
         transform: scaleX(1);
       }
 
-      .cta-orbit {
-        animation: orbit-spin 24s linear infinite;
-      }
-
-      @keyframes aurora-drift {
+      @keyframes hero-enter {
         from {
-          transform: translate3d(-4%, -2%, 0) scale(0.96);
+          opacity: 0;
+          transform: translateY(14px);
         }
         to {
-          transform: translate3d(8%, 6%, 0) scale(1.12);
-        }
-      }
-
-      @keyframes orb-breathe {
-        0%,
-        100% {
-          transform: scale(0.96);
-          opacity: 0.72;
-        }
-        50% {
-          transform: scale(1.06);
           opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      @keyframes button-sheen {
-        0%,
-        68%,
-        100% {
-          transform: translateX(-140%) skewX(-12deg);
+      @keyframes signal-shift {
+        from {
+          stroke-dashoffset: 0;
         }
-        82% {
-          transform: translateX(520%) skewX(-12deg);
-        }
-      }
-
-      @keyframes console-glint {
-        0%,
-        65%,
-        100% {
-          transform: translateX(-120%);
-        }
-        82% {
-          transform: translateX(170%);
-        }
-      }
-
-      @keyframes signal-dash {
         to {
           stroke-dashoffset: -46;
         }
@@ -484,36 +450,14 @@
         }
       }
 
-      @keyframes card-float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-
-      @keyframes status-pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgb(184 244 93 / 0);
-        }
-        50% {
-          box-shadow: 0 0 0 7px rgb(184 244 93 / 0.08);
-        }
-      }
-
       @keyframes panel-enter {
         from {
           opacity: 0;
-          transform: translateY(18px);
-          filter: blur(6px);
+          transform: translateY(12px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
-          filter: blur(0);
         }
       }
 
@@ -539,59 +483,29 @@
         }
       }
 
-      @keyframes approval-scan {
-        0%,
-        100% {
-          transform: translateY(-130%);
+      @keyframes result-enter {
+        from {
           opacity: 0;
+          transform: translateY(8px);
         }
-        18%,
-        70% {
-          opacity: 0.55;
-        }
-        82% {
-          transform: translateY(560%);
-          opacity: 0;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
       @keyframes receipt-line {
-        0%,
-        15% {
+        from {
           transform: scaleX(0.08);
           opacity: 0.25;
         }
-        35%,
-        80% {
+        to {
           transform: scaleX(1);
           opacity: 1;
-        }
-        100% {
-          transform: scaleX(1);
-          opacity: 0.4;
-        }
-      }
-
-      @keyframes ring-glow {
-        0%,
-        100% {
-          filter: drop-shadow(0 0 0 rgb(85 214 255 / 0));
-        }
-        50% {
-          filter: drop-shadow(0 0 12px rgb(85 214 255 / 0.26));
-        }
-      }
-
-      @keyframes orbit-spin {
-        to {
-          transform: rotate(360deg);
         }
       }
 
       @media (max-width: 767px) {
-        .mission-console {
-          transform: none;
-        }
         .flow-rail {
           mask-image: linear-gradient(
             to right,
@@ -623,8 +537,18 @@
           opacity: 1;
           transform: none;
         }
+        .reveal.reveal-pending {
+          opacity: 1;
+          transform: none;
+        }
         .signal-packet,
-        .approval-scan {
+        .mission-console.is-stage-changing .signal-packet {
+          display: none;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .mobile-menu-panel {
           display: none;
         }
       }
@@ -648,7 +572,7 @@
         class="aurora absolute -left-32 top-24 size-[34rem] rounded-full bg-blue/40"
       ></div>
       <div
-        class="aurora absolute -right-48 top-[38rem] size-[38rem] rounded-full bg-pink/30 [animation-delay:-8s]"
+        class="aurora absolute -right-48 top-[38rem] size-[38rem] rounded-full bg-pink/30"
       ></div>
     </div>
 
@@ -684,22 +608,22 @@
 
         <div class="hidden items-center gap-7 lg:flex">
           <a
-            class="text-sm text-slate-400 transition hover:text-white"
+            class="nav-link text-sm text-slate-400 transition hover:text-white"
             href="#mission"
             >Mission flow</a
           >
           <a
-            class="text-sm text-slate-400 transition hover:text-white"
+            class="nav-link text-sm text-slate-400 transition hover:text-white"
             href="#control"
             >Human control</a
           >
           <a
-            class="text-sm text-slate-400 transition hover:text-white"
+            class="nav-link text-sm text-slate-400 transition hover:text-white"
             href="#institutions"
             >Institutions</a
           >
           <a
-            class="text-sm text-slate-400 transition hover:text-white"
+            class="nav-link text-sm text-slate-400 transition hover:text-white"
             href="#answers"
             >Answers</a
           >
@@ -727,27 +651,29 @@
       </nav>
       <nav
         id="mobile-menu"
-        class="container-page hidden pb-4 lg:hidden"
+        class="mobile-menu-panel container-page lg:hidden"
         aria-label="Mobile navigation"
+        aria-hidden="true"
+        data-open="false"
       >
         <div class="grid grid-cols-2 gap-2 border-t border-white/8 pt-4">
           <a
-            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#mission"
             >Mission flow</a
           >
           <a
-            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#control"
             >Human control</a
           >
           <a
-            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#institutions"
             >Institutions</a
           >
           <a
-            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            class="nav-link rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#answers"
             >Answers</a
           >
@@ -769,12 +695,12 @@
           <div
             class="grid items-start gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 xl:gap-20"
           >
-            <div class="max-w-3xl lg:sticky lg:top-28">
-              <p class="eyebrow reveal is-visible">
+            <div class="hero-intro max-w-3xl lg:sticky lg:top-28">
+              <p class="eyebrow">
                 Human-governed mission system
               </p>
               <h1
-                class="reveal is-visible mt-5 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94] [--delay:80ms]"
+                class="mt-5 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94]"
               >
                 Give Tokdio<br />a mission.<br />
                 <span
@@ -783,26 +709,26 @@
                 >
               </h1>
               <p
-                class="reveal is-visible mt-6 max-w-2xl text-base text-slate-400 [--delay:160ms] md:text-xl md:leading-relaxed"
+                class="mt-6 max-w-2xl text-base text-slate-400 md:text-xl md:leading-relaxed"
               >
                 Turn a customer signal, engineering risk, launch, or growth
-                bottleneck into reviewable work. Tokdio scopes the crew,
-                evidence, authority, and human gates before anything
-                consequential moves.
+                bottleneck into a reviewed plan. Tokdio proposes the crew,
+                evidence, permissions, and approvals. Your people decide what
+                moves.
               </p>
               <div
-                class="reveal is-visible mt-8 flex flex-col gap-3 sm:flex-row [--delay:240ms]"
+                class="mt-8 flex flex-col gap-3 sm:flex-row"
               >
                 <a class="button-primary" href="#mission-brief">
                   <span class="relative">Build a mission brief</span
                   ><span class="relative" aria-hidden="true">→</span>
                 </a>
                 <a class="button-secondary" href="#mission"
-                  >Watch a mission move</a
+                  >Explore the eight-stage flow</a
                 >
               </div>
               <div
-                class="reveal is-visible mt-7 flex flex-wrap gap-2 [--delay:320ms]"
+                class="mt-7 flex flex-wrap gap-2"
                 aria-label="Operating principles"
               >
                 <span class="mono-chip"
@@ -824,7 +750,6 @@
               <div
                 id="hero-console"
                 class="mission-console glass-panel relative overflow-hidden rounded-2xl md:rounded-3xl"
-                data-tilt
               >
                 <div
                   class="flex items-center justify-between border-b border-white/8 px-4 py-3 md:px-6"
@@ -837,9 +762,12 @@
                   <p
                     class="font-mono text-xs uppercase tracking-[0.12em] text-slate-400"
                   >
-                    Olympus · confirmation-gated preview
+                    Illustrative mission walkthrough · not live
                   </p>
-                  <span class="status-dot size-2 rounded-full bg-lime"></span>
+                  <span
+                    class="hidden rounded-full border border-white/10 px-2 py-1 font-mono text-[0.65rem] uppercase text-slate-500 sm:inline-flex"
+                    >Example</span
+                  >
                 </div>
 
                 <div
@@ -922,7 +850,7 @@
                     </div>
                     <span
                       class="hidden rounded-full border border-lime/20 bg-lime/8 px-3 py-1.5 font-mono text-xs uppercase text-lime sm:inline-flex"
-                      >Scoping</span
+                      >Example stage</span
                     >
                   </div>
 
@@ -1009,7 +937,7 @@
                     class="relative z-10 mt-6 grid gap-3 sm:grid-cols-[1.15fr_.85fr]"
                   >
                     <article
-                      class="live-card rounded-xl border border-white/10 bg-ink/85 p-4 shadow-2xl"
+                      class="rounded-xl border border-white/10 bg-ink/85 p-4 shadow-2xl"
                     >
                       <div class="flex items-center justify-between gap-4">
                         <span
@@ -1020,7 +948,7 @@
                         <span
                           id="hero-status"
                           class="rounded-full bg-blue/12 px-2 py-1 font-mono text-xs uppercase text-cyan"
-                          >Reviewing scope</span
+                          >Example: reviewing scope</span
                         >
                       </div>
                       <p
@@ -1041,12 +969,12 @@
                     </article>
 
                     <article
-                      class="live-card rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-2xl"
+                      class="rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-2xl"
                     >
                       <p
                         class="font-mono text-xs uppercase tracking-[0.1em] text-slate-400"
                       >
-                        Returning now
+                        Stage output
                       </p>
                       <p
                         id="hero-output"
@@ -1093,7 +1021,7 @@
               <div>
                 <p class="eyebrow">The operator flow</p>
                 <h2 class="mt-3 text-2xl md:text-3xl">
-                  From intent to durable work.
+                  From a defined outcome to an approved work request.
                 </h2>
               </div>
               <p class="max-w-xl text-sm text-slate-400">
@@ -1156,29 +1084,32 @@
             <div class="max-w-4xl">
               <p class="eyebrow">One mission · complete loop</p>
               <h2 class="mt-5 text-4xl leading-[1.02] md:text-6xl lg:text-7xl">
-                Watch the work move—without losing context.
+                Explore every stage, owner, output, and human gate.
               </h2>
+              <p class="mt-4 font-mono text-xs uppercase tracking-[0.1em] text-slate-500">
+                Illustrative workflow · not live work
+              </p>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-col items-start gap-2 md:items-end">
               <button
                 id="flow-toggle"
                 class="button-secondary min-h-10 px-4 text-xs"
                 type="button"
-                aria-pressed="false"
+                aria-pressed="true"
                 aria-describedby="flow-motion-note"
               >
-                <span id="flow-toggle-icon" aria-hidden="true">Ⅱ</span
-                ><span id="flow-toggle-label">Pause story</span>
+                <span id="flow-toggle-icon" aria-hidden="true">▶</span
+                ><span id="flow-toggle-label">Start auto-advance</span>
               </button>
               <span
                 id="flow-motion-note"
-                class="sr-only"
+                class="max-w-xs text-left font-mono text-xs uppercase tracking-[0.06em] text-amber-200 md:text-right"
                 aria-live="polite"
               ></span>
             </div>
           </div>
 
-          <div id="flow-experience" class="mt-12" data-autoplay="true">
+          <div id="flow-experience" class="mt-12" data-autoplay="false">
             <div
               id="flow-rail"
               class="flow-rail overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -1309,7 +1240,7 @@
               class="mt-2 flex items-center justify-between gap-4 font-mono text-xs uppercase tracking-[0.08em] text-slate-500"
             >
               <span id="flow-step">Stage 1 of 8 · Discover</span>
-              <span class="md:hidden">Swipe to explore stages</span>
+              <span class="md:hidden">Select a stage to explore</span>
               <span class="hidden md:inline">← → keys switch stages</span>
             </div>
 
@@ -1469,8 +1400,8 @@
             </h2>
             <p class="mt-6 max-w-xl text-slate-400">
               Start with one outcome, the evidence you already have, and the
-              decision that must stay human. This builder stays in your browser
-              until you choose to send the finished brief.
+              decision that must stay human. Your inputs stay on this page until
+              you open an email draft.
             </p>
           </div>
 
@@ -1639,7 +1570,7 @@ Find and fix the recurring checkout friction.</textarea
                   </div>
                   <div class="rounded-xl border border-white/8 bg-ink/55 p-4">
                     <dt class="font-mono text-xs uppercase text-slate-400">
-                      First durable action
+                      First action after approval
                     </dt>
                     <dd class="mt-2 text-sm text-slate-300">
                       Create only after explicit confirmation
@@ -1651,10 +1582,11 @@ Find and fix the recurring checkout friction.</textarea
                   class="button-primary relative mt-7 w-full"
                   type="submit"
                 >
-                  Build my mission brief <span aria-hidden="true">→</span>
+                  Generate local brief <span aria-hidden="true">→</span>
                 </button>
                 <p class="mt-3 text-center text-xs text-slate-500">
-                  Nothing is transmitted when you build the brief.
+                  Your inputs stay on this page. Nothing is sent until you open
+                  an email draft.
                 </p>
 
                 <div
@@ -1692,7 +1624,7 @@ Find and fix the recurring checkout friction.</textarea
                       id="brief-email"
                       class="button-secondary flex-1"
                       href="mailto:mission@tokdio.com"
-                      >Send when ready</a
+                      >Open email draft</a
                     >
                   </div>
                 </div>
@@ -1707,7 +1639,7 @@ Find and fix the recurring checkout friction.</textarea
           <div class="reveal mx-auto max-w-5xl text-center">
             <p class="eyebrow">Olympus Mission Control</p>
             <h2 class="mt-5 text-4xl md:text-6xl lg:text-7xl">
-              Speed, without disappearing accountability.
+              Move faster without losing accountability.
             </h2>
             <p class="mx-auto mt-6 max-w-3xl text-slate-400">
               Your people set intent, authority, budgets, approvals, and proof.
@@ -1724,12 +1656,8 @@ Find and fix the recurring checkout friction.</textarea
             class="mt-12 grid auto-rows-[minmax(15rem,auto)] gap-4 lg:grid-cols-2"
           >
             <article
-              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:60ms]"
-              data-tilt
+              class="glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
             >
-              <div
-                class="approval-scan pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-transparent via-cyan/8 to-transparent"
-              ></div>
               <p class="eyebrow">Human gate</p>
               <h3 class="mt-4 text-2xl md:text-3xl">
                 Confirmation arrives before durable work.
@@ -1761,15 +1689,14 @@ Find and fix the recurring checkout friction.</textarea
                     >Review brief</span
                   ><span
                     class="rounded-lg border border-white/10 px-3 py-2 text-xs text-slate-500"
-                    >No silent create</span
+                    >Work request not created</span
                   >
                 </div>
               </div>
             </article>
 
             <article
-              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:120ms]"
-              data-tilt
+              class="receipt-proof glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:120ms]"
             >
               <p class="eyebrow">Evidence chain</p>
               <h3 class="mt-4 text-2xl md:text-3xl">
@@ -1811,8 +1738,7 @@ Find and fix the recurring checkout friction.</textarea
             </article>
 
             <article
-              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:180ms]"
-              data-tilt
+              class="glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
             >
               <div class="flex items-start justify-between gap-6">
                 <div>
@@ -1827,11 +1753,17 @@ Find and fix the recurring checkout friction.</textarea
                 </div>
                 <div
                   class="budget-ring grid size-24 shrink-0 place-items-center rounded-full p-2"
+                  aria-label="Illustrative budget used: 72 percent"
                 >
                   <div
-                    class="grid size-full place-items-center rounded-full bg-panel"
+                    class="grid size-full place-items-center rounded-full bg-panel text-center"
                   >
-                    <span class="font-mono text-sm text-white">72%</span>
+                    <span>
+                      <span class="block font-mono text-sm text-white">72%</span>
+                      <span class="mt-1 block font-mono text-[0.55rem] uppercase tracking-[0.08em] text-slate-500"
+                        >Example used</span
+                      >
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1860,8 +1792,7 @@ Find and fix the recurring checkout friction.</textarea
             </article>
 
             <article
-              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:240ms]"
-              data-tilt
+              class="glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
             >
               <p class="eyebrow">Truthful failure</p>
               <h3 class="mt-4 text-2xl md:text-3xl">
@@ -1922,7 +1853,7 @@ Find and fix the recurring checkout friction.</textarea
 
           <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--glow:rgb(85_214_255_/_0.2)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-cyan/20 bg-cyan/8 font-mono text-cyan"
@@ -1937,7 +1868,7 @@ Find and fix the recurring checkout friction.</textarea
               </p>
             </article>
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:60ms] [--glow:rgb(255_63_142_/_0.2)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-pink/20 bg-pink/8 font-mono text-pink"
@@ -1952,7 +1883,7 @@ Find and fix the recurring checkout friction.</textarea
               </p>
             </article>
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:120ms] [--glow:rgb(22_132_255_/_0.22)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-blue/20 bg-blue/8 font-mono text-blue"
@@ -1967,7 +1898,7 @@ Find and fix the recurring checkout friction.</textarea
               </p>
             </article>
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--glow:rgb(143_107_255_/_0.22)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-violet/20 bg-violet/8 font-mono text-violet"
@@ -1982,7 +1913,7 @@ Find and fix the recurring checkout friction.</textarea
               </p>
             </article>
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:60ms] [--glow:rgb(184_244_93_/_0.18)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-lime/20 bg-lime/8 font-mono text-lime"
@@ -1997,7 +1928,7 @@ Find and fix the recurring checkout friction.</textarea
               </p>
             </article>
             <article
-              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:120ms] [--glow:rgb(255_184_77_/_0.18)]"
+              class="institution-card glass-panel rounded-2xl p-6"
             >
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-amber-300/20 bg-amber-300/[0.07] font-mono text-amber-200"
@@ -2088,14 +2019,14 @@ Find and fix the recurring checkout friction.</textarea
         id="answers"
         class="section-pad border-y border-white/8 bg-white/[0.015]"
       >
-        <div class="container-page grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-          <div class="reveal">
+        <div class="container-page reveal grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+          <div>
             <p class="eyebrow">Questions worth answering</p>
             <h2 class="mt-5 text-4xl md:text-5xl">
               Before consequential work moves.
             </h2>
           </div>
-          <div class="reveal divide-y divide-white/10 border-y border-white/10">
+          <div class="divide-y divide-white/10 border-y border-white/10">
             <details class="group py-6" open>
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
@@ -2189,28 +2120,28 @@ Find and fix the recurring checkout friction.</textarea
             class="absolute bottom-[8%] right-[8%] size-2 rounded-full bg-pink shadow-[0_0_18px_rgba(255,63,142,.8)]"
           ></span>
         </div>
-        <div class="container-page relative text-center">
-          <p class="eyebrow reveal">The mission is the starting line</p>
+        <div class="container-page reveal relative text-center">
+          <p class="eyebrow">The mission is the starting line</p>
           <h2
-            class="reveal mx-auto mt-6 max-w-6xl text-5xl leading-[0.96] md:text-7xl lg:text-8xl [--delay:80ms]"
+            class="mx-auto mt-6 max-w-6xl text-5xl leading-[0.96] md:text-7xl lg:text-8xl"
           >
             Make the mission reviewable before it moves.
           </h2>
           <p
-            class="reveal mx-auto mt-7 max-w-2xl text-slate-400 [--delay:160ms]"
+            class="mx-auto mt-7 max-w-2xl text-slate-400"
           >
             Turn the goal, backlog, signal, risk, or mess into a brief with a
             bounded outcome, available evidence, proposed crew, and explicit
             human gate.
           </p>
           <div
-            class="reveal mt-9 flex flex-col justify-center gap-3 sm:flex-row [--delay:240ms]"
+            class="mt-9 flex flex-col justify-center gap-3 sm:flex-row"
           >
             <a class="button-primary" href="#mission-brief"
               ><span class="relative">Build a mission brief</span
               ><span class="relative">→</span></a
             ><a class="button-secondary" href="#mission"
-              >Watch the operator flow</a
+              >Explore the eight-stage flow</a
             >
           </div>
         </div>
@@ -2317,7 +2248,7 @@ Find and fix the recurring checkout friction.</textarea
             title: "Move the change while keeping a safe return path.",
             story:
               "Deploy, migrate, observe health and errors, and roll back or remediate when evidence requires it.",
-            output: "Running release + deploy receipt",
+            output: "Release candidate + deploy plan",
             gate: "Approve production mutation",
             state: "Awaiting owner",
             action:
@@ -2417,12 +2348,19 @@ Find and fix the recurring checkout friction.</textarea
           },
         };
 
+        var HUMAN_GATE_INDEX = 4;
         var currentStage = 0;
-        var storyPaused = reduceMotion.matches || compactMotion.matches;
+        var storyPaused = true;
+        var storyStarted = false;
+        var storyInView = true;
+        var awaitingGate = false;
+        var gateAcknowledged = false;
+        var resumeAfterGate = false;
         var flowTimer = null;
         var flowExperience = document.getElementById("flow-experience");
         var flowRail = document.getElementById("flow-rail");
         var stagePanel = document.getElementById("stage-panel");
+        var heroConsole = document.getElementById("hero-console");
         var flowTabs = Array.prototype.slice.call(
           document.querySelectorAll("[data-flow-tab]"),
         );
@@ -2439,7 +2377,16 @@ Find and fix the recurring checkout friction.</textarea
         }
 
         function setStage(index, userInitiated) {
-          currentStage = (index + stages.length) % stages.length;
+          var previousStage = currentStage;
+          var nextStage = (index + stages.length) % stages.length;
+          if (nextStage === 0 && previousStage !== 0) {
+            gateAcknowledged = false;
+          }
+          if (userInitiated && nextStage > HUMAN_GATE_INDEX) {
+            gateAcknowledged = true;
+            awaitingGate = false;
+          }
+          currentStage = nextStage;
           var stage = stages[currentStage];
           flowTabs.forEach(function (tab, tabIndex) {
             var active = tabIndex === currentStage;
@@ -2471,7 +2418,7 @@ Find and fix the recurring checkout friction.</textarea
           text("evidence-two", stage.rows[1]);
           text("evidence-three", stage.rows[2]);
           text("hero-owner", stage.owner);
-          text("hero-status", stage.status);
+          text("hero-status", "Example: " + stage.status.toLowerCase());
           text("hero-action", stage.action);
           text("hero-output", stage.output);
           text("hero-evidence", stage.evidence);
@@ -2497,6 +2444,11 @@ Find and fix the recurring checkout friction.</textarea
             void stagePanel.offsetWidth;
             stagePanel.classList.add("is-changing");
           }
+          if (heroConsole && !reduceMotion.matches) {
+            heroConsole.classList.remove("is-stage-changing");
+            void heroConsole.offsetWidth;
+            heroConsole.classList.add("is-stage-changing");
+          }
           if (compactMotion.matches && flowRail) {
             window.requestAnimationFrame(function () {
               var activeTab = flowTabs[currentStage];
@@ -2510,24 +2462,43 @@ Find and fix the recurring checkout friction.</textarea
               });
             });
           }
-          if (userInitiated) restartStory();
+          if (currentStage === HUMAN_GATE_INDEX && !gateAcknowledged) {
+            resumeAfterGate = !storyPaused;
+            awaitingGate = true;
+            stopStoryTimer();
+          } else if (currentStage !== HUMAN_GATE_INDEX) {
+            awaitingGate = false;
+          }
+          updateToggle();
+          if (userInitiated && !awaitingGate) restartStory();
+        }
+
+        function stopStoryTimer() {
+          window.clearInterval(flowTimer);
+          flowTimer = null;
+          if (flowExperience)
+            flowExperience.setAttribute("data-autoplay", "false");
         }
 
         function startStory() {
-          window.clearInterval(flowTimer);
+          stopStoryTimer();
           var canRun =
-            !storyPaused && !reduceMotion.matches && !document.hidden;
+            !storyPaused &&
+            !awaitingGate &&
+            storyInView &&
+            !reduceMotion.matches &&
+            !document.hidden;
           if (flowExperience)
             flowExperience.setAttribute("data-autoplay", String(canRun));
           if (!canRun) return;
           flowTimer = window.setInterval(function () {
             setStage(currentStage + 1, false);
-          }, 4800);
+          }, 6800);
         }
 
         function restartStory() {
-          window.clearInterval(flowTimer);
-          if (!storyPaused) startStory();
+          stopStoryTimer();
+          if (!storyPaused && !awaitingGate) startStory();
         }
 
         function updateToggle() {
@@ -2538,16 +2509,34 @@ Find and fix the recurring checkout friction.</textarea
             button.disabled = true;
             button.setAttribute("aria-pressed", "true");
             text("flow-toggle-icon", "■");
-            text("flow-toggle-label", "Animation off");
+            text("flow-toggle-label", "Auto-advance off");
             if (note)
               note.textContent =
-                "Animation is disabled by your reduced-motion system preference.";
+                "Auto-advance is disabled by your reduced-motion system preference.";
             return;
           }
           button.disabled = false;
-          button.setAttribute("aria-pressed", String(storyPaused));
+          button.setAttribute(
+            "aria-pressed",
+            String(storyPaused || awaitingGate),
+          );
+          if (awaitingGate) {
+            text("flow-toggle-icon", "→");
+            text("flow-toggle-label", "Continue example");
+            if (note)
+              note.textContent =
+                "Owner approval required. Example paused before production.";
+            return;
+          }
           text("flow-toggle-icon", storyPaused ? "▶" : "Ⅱ");
-          text("flow-toggle-label", storyPaused ? "Play story" : "Pause story");
+          text(
+            "flow-toggle-label",
+            storyPaused
+              ? storyStarted
+                ? "Resume auto-advance"
+                : "Start auto-advance"
+              : "Pause auto-advance",
+          );
           if (note)
             note.textContent =
               compactMotion.matches && storyPaused
@@ -2582,29 +2571,56 @@ Find and fix the recurring checkout friction.</textarea
         var flowToggle = document.getElementById("flow-toggle");
         if (flowToggle)
           flowToggle.addEventListener("click", function () {
+            if (awaitingGate) {
+              gateAcknowledged = true;
+              awaitingGate = false;
+              storyPaused = !resumeAfterGate;
+              setStage(HUMAN_GATE_INDEX + 1, true);
+              return;
+            }
             storyPaused = !storyPaused;
+            if (!storyPaused) storyStarted = true;
             updateToggle();
             startStory();
           });
         if (flowExperience) {
           flowExperience.addEventListener("mouseenter", function () {
-            window.clearInterval(flowTimer);
+            stopStoryTimer();
           });
           flowExperience.addEventListener("mouseleave", startStory);
           flowExperience.addEventListener("focusin", function () {
-            window.clearInterval(flowTimer);
+            stopStoryTimer();
           });
           flowExperience.addEventListener("focusout", function (event) {
             if (!flowExperience.contains(event.relatedTarget)) startStory();
           });
         }
 
-        var heroConsole = document.getElementById("hero-console");
         if (heroConsole) {
           heroConsole.addEventListener("mouseenter", function () {
-            window.clearInterval(flowTimer);
+            stopStoryTimer();
           });
           heroConsole.addEventListener("mouseleave", startStory);
+        }
+
+        if ("IntersectionObserver" in window) {
+          var storyVisibility = { top: false, mission: false };
+          var storyObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                storyVisibility[entry.target.id] = entry.isIntersecting;
+              });
+              storyInView = storyVisibility.top || storyVisibility.mission;
+              if (storyInView) startStory();
+              else stopStoryTimer();
+            },
+            { threshold: 0.05 },
+          );
+          [document.getElementById("top"), document.getElementById("mission")]
+            .filter(Boolean)
+            .forEach(function (section) {
+              storyObserver.observe(section);
+            });
         }
 
         var outcomeField = document.getElementById("mission-outcome");
@@ -2631,7 +2647,10 @@ Find and fix the recurring checkout friction.</textarea
           if (outcomeField) outcomeField.value = mission.outcome;
           if (evidenceField) evidenceField.value = mission.evidence;
           if (gateField) gateField.value = mission.gate;
-          if (briefResult) briefResult.classList.add("hidden");
+          if (briefResult) {
+            briefResult.classList.add("hidden");
+            briefResult.classList.remove("is-ready");
+          }
           if (shouldFocus) button.focus();
         }
 
@@ -2696,7 +2715,7 @@ Find and fix the recurring checkout friction.</textarea
               mission.crew +
               "\n\nDecision that stays human\n" +
               gate +
-              "\n\nFirst durable action\nCreate work only after explicit confirmation.";
+              "\n\nFirst action after approval\nCreate work only after explicit confirmation.";
 
             text(
               "brief-result-summary",
@@ -2719,6 +2738,9 @@ Find and fix the recurring checkout friction.</textarea
                 encodeURIComponent(briefText);
             if (briefResult) {
               briefResult.classList.remove("hidden");
+              briefResult.classList.remove("is-ready");
+              void briefResult.offsetWidth;
+              briefResult.classList.add("is-ready");
               briefResult.focus();
             }
           });
@@ -2727,9 +2749,11 @@ Find and fix the recurring checkout friction.</textarea
         if (copyBrief)
           copyBrief.addEventListener("click", function () {
             function copied() {
-              text("copy-brief", "Copied");
+              text("copy-brief", "Brief copied");
+              copyBrief.classList.add("is-confirmed");
               window.setTimeout(function () {
                 text("copy-brief", "Copy brief");
+                copyBrief.classList.remove("is-confirmed");
               }, 1800);
             }
             function fallbackCopy() {
@@ -2750,7 +2774,8 @@ Find and fix the recurring checkout friction.</textarea
 
         function setMobileMenu(open) {
           if (!mobileMenuToggle || !mobileMenu) return;
-          mobileMenu.classList.toggle("hidden", !open);
+          mobileMenu.setAttribute("data-open", String(open));
+          mobileMenu.setAttribute("aria-hidden", String(!open));
           mobileMenuToggle.setAttribute("aria-expanded", String(open));
           mobileMenuToggle.setAttribute(
             "aria-label",
@@ -2782,6 +2807,7 @@ Find and fix the recurring checkout friction.</textarea
             function (entries) {
               entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
+                  entry.target.classList.remove("reveal-pending");
                   entry.target.classList.add("is-visible");
                   observer.unobserve(entry.target);
                 }
@@ -2792,43 +2818,55 @@ Find and fix the recurring checkout friction.</textarea
           Array.prototype.slice
             .call(document.querySelectorAll(".reveal:not(.is-visible)"))
             .forEach(function (node) {
+              node.classList.add("reveal-pending");
               observer.observe(node);
             });
         } else {
           Array.prototype.slice
             .call(document.querySelectorAll(".reveal"))
             .forEach(function (node) {
+              node.classList.remove("reveal-pending");
               node.classList.add("is-visible");
             });
         }
 
-        if (
-          !reduceMotion.matches &&
-          window.matchMedia("(pointer: fine)").matches
-        ) {
-          Array.prototype.slice
-            .call(document.querySelectorAll("[data-tilt]"))
-            .forEach(function (card) {
-              card.addEventListener("pointermove", function (event) {
-                var rect = card.getBoundingClientRect();
-                var x = (event.clientX - rect.left) / rect.width - 0.5;
-                var y = (event.clientY - rect.top) / rect.height - 0.5;
-                card.style.transform =
-                  "perspective(1400px) rotateX(" +
-                  String(y * -3) +
-                  "deg) rotateY(" +
-                  String(x * 3) +
-                  "deg) translateY(-2px)";
+        var sectionLinks = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-link[href^="#"]'),
+        );
+        var trackedSections = Array.prototype.slice
+          .call(document.querySelectorAll("#mission, #control, #institutions, #answers"));
+        if ("IntersectionObserver" in window && sectionLinks.length) {
+          var navigationObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                sectionLinks.forEach(function (link) {
+                  var active =
+                    link.getAttribute("href") === "#" + entry.target.id;
+                  if (active)
+                    link.setAttribute("aria-current", "location");
+                  else link.removeAttribute("aria-current");
+                });
               });
-              card.addEventListener("pointerleave", function () {
-                card.style.transform = "";
-              });
-            });
+            },
+            { rootMargin: "-20% 0px -65% 0px", threshold: 0 },
+          );
+          trackedSections.forEach(function (section) {
+            navigationObserver.observe(section);
+          });
         }
 
         document.addEventListener("visibilitychange", startStory);
         reduceMotion.addEventListener("change", function (event) {
-          storyPaused = event.matches || compactMotion.matches;
+          if (event.matches || compactMotion.matches) storyPaused = true;
+          if (event.matches) {
+            Array.prototype.slice
+              .call(document.querySelectorAll(".reveal"))
+              .forEach(function (node) {
+                node.classList.remove("reveal-pending");
+                node.classList.add("is-visible");
+              });
+          }
           updateToggle();
           startStory();
         });
