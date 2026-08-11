@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
     <meta name="robots" content="index, follow" />
     <meta
       name="description"
@@ -28,6 +29,13 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* Critical pre-paint: keeps the flash dark while the Tailwind runtime compiles */
+      html {
+        background: #06080f;
+        color: #cbd5e1;
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
       @theme {
@@ -259,11 +267,6 @@
 
       .status-dot {
         animation: status-pulse 2s ease-in-out infinite;
-      }
-
-      .ticker-track {
-        width: max-content;
-        animation: ticker 34s linear infinite;
       }
 
       .flow-tab {
@@ -501,12 +504,6 @@
         }
       }
 
-      @keyframes ticker {
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
       @keyframes panel-enter {
         from {
           opacity: 0;
@@ -629,9 +626,6 @@
         .signal-packet,
         .approval-scan {
           display: none;
-        }
-        .ticker-track {
-          transform: none;
         }
       }
     </style>
@@ -849,7 +843,7 @@
                 </div>
 
                 <div
-                  class="console-grid relative min-h-[35rem] overflow-hidden p-4 sm:p-6 md:min-h-[42rem] md:p-8"
+                  class="console-grid relative flex min-h-[35rem] flex-col overflow-hidden p-4 sm:p-6 md:min-h-[32rem] md:p-8"
                 >
                   <svg
                     class="absolute inset-x-0 top-20 h-56 w-full opacity-70"
@@ -933,7 +927,7 @@
                   </div>
 
                   <div
-                    class="relative z-10 mt-10 grid grid-cols-4 gap-2 sm:grid-cols-8"
+                    class="relative z-10 mt-8 grid grid-cols-4 gap-2 sm:grid-cols-8"
                     aria-label="Mission lifecycle"
                   >
                     <div
@@ -1012,7 +1006,7 @@
                   </div>
 
                   <div
-                    class="relative z-10 mt-8 grid gap-3 sm:grid-cols-[1.15fr_.85fr]"
+                    class="relative z-10 mt-6 grid gap-3 sm:grid-cols-[1.15fr_.85fr]"
                   >
                     <article
                       class="live-card rounded-xl border border-white/10 bg-ink/85 p-4 shadow-2xl"
@@ -1066,20 +1060,22 @@
                     </article>
                   </div>
 
-                  <div
-                    class="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-ink/80 px-4 py-3 backdrop-blur sm:bottom-6 sm:left-6 sm:right-6"
-                  >
-                    <p
-                      class="font-mono text-xs uppercase tracking-[0.06em] text-slate-400"
+                  <div class="relative z-10 mt-auto pt-4 sm:pt-6">
+                    <div
+                      class="flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-ink/80 px-4 py-3 backdrop-blur"
                     >
-                      Next gate
-                      <span id="hero-gate" class="text-white"
-                        >Confirm durable work request</span
+                      <p
+                        class="font-mono text-xs uppercase tracking-[0.06em] text-slate-400"
                       >
-                    </p>
-                    <span class="hidden font-mono text-xs text-lime sm:inline"
-                      >No consequential action auto-approved</span
-                    >
+                        Next gate
+                        <span id="hero-gate" class="text-white"
+                          >Confirm durable work request</span
+                        >
+                      </p>
+                      <span class="hidden font-mono text-xs text-lime sm:inline"
+                        >No consequential action auto-approved</span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
