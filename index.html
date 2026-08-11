@@ -1,0 +1,2481 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="description"
+      content="Give Tokdio a business outcome. Persistent AI crews move it from signal to shipped, sold, and supported work while your people keep command."
+    />
+    <title>Tokdio — Give us a mission. Keep command.</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tokdio — Give us a mission. Keep command." />
+    <meta
+      property="og:description"
+      content="Persistent AI crews move business outcomes from signal to shipped, sold, and supported work while your people keep command."
+    />
+    <meta property="og:url" content="https://tokdio.github.io/website/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://tokdio.github.io/website/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-ink: #06080f;
+        --color-panel: #0c101c;
+        --color-panel-soft: #111827;
+        --color-blue: #1684ff;
+        --color-cyan: #55d6ff;
+        --color-pink: #ff3f8e;
+        --color-violet: #8f6bff;
+        --color-lime: #b8f45d;
+        --font-sans: "Plus Jakarta Sans", sans-serif;
+        --font-mono: "IBM Plex Mono", monospace;
+      }
+
+      @layer base {
+        html {
+          color-scheme: dark;
+          scroll-padding-top: 5rem;
+        }
+
+        body {
+          @apply overflow-x-hidden bg-ink font-sans text-slate-300 antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+          @apply font-sans font-semibold tracking-[-0.035em] text-white;
+          text-wrap: balance;
+        }
+
+        p {
+          @apply leading-relaxed;
+        }
+
+        button,
+        a {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+          @apply outline-2 outline-offset-4 outline-cyan;
+        }
+      }
+
+      @layer components {
+        .container-page {
+          @apply mx-auto w-full max-w-[90rem] px-5 md:px-8 lg:px-12;
+        }
+
+        .section-pad {
+          @apply py-20 md:py-28 lg:py-36;
+        }
+
+        .eyebrow {
+          @apply font-mono text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-cyan md:text-xs;
+        }
+
+        .button-primary,
+        .button-secondary {
+          @apply relative inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-lg px-5 text-sm font-semibold transition duration-300 md:min-h-13 md:px-6 md:text-base;
+        }
+
+        .button-primary {
+          @apply bg-white text-ink shadow-[0_0_0_1px_rgba(255,255,255,.2),0_12px_45px_rgba(22,132,255,.22)] hover:-translate-y-0.5;
+        }
+
+        .button-primary::before {
+          content: "";
+          @apply absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-blue/20 to-transparent;
+          animation: button-sheen 5.5s ease-in-out infinite;
+        }
+
+        .button-secondary {
+          @apply border border-white/15 bg-white/[0.03] text-white backdrop-blur hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.07];
+        }
+
+        .glass-panel {
+          @apply border border-white/10 bg-white/[0.035] shadow-[0_30px_100px_rgba(0,0,0,.35)] backdrop-blur-xl;
+        }
+
+        .mono-chip {
+          @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.08em] text-slate-400;
+        }
+
+        .reveal {
+          opacity: 0;
+          transform: translateY(28px);
+          transition:
+            opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
+            transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+          transition-delay: var(--delay, 0ms);
+        }
+
+        .reveal.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .page-grid {
+        background-image:
+          linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+        background-size: 52px 52px;
+        mask-image: linear-gradient(to bottom, black, transparent 88%);
+      }
+
+      .aurora {
+        filter: blur(90px);
+        opacity: 0.3;
+        animation: aurora-drift 18s ease-in-out infinite alternate;
+      }
+
+      .hero-orb {
+        background:
+          radial-gradient(
+            circle at 58% 42%,
+            rgb(85 214 255 / 0.25),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 34% 65%,
+            rgb(255 63 142 / 0.25),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgb(22 132 255 / 0.26),
+            transparent 62%
+          );
+        animation: orb-breathe 8s ease-in-out infinite;
+      }
+
+      .mission-console {
+        transform: perspective(1400px) rotateX(1.5deg) rotateY(-1.5deg);
+        transform-style: preserve-3d;
+        transition: transform 0.25s ease-out;
+      }
+
+      .mission-console::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(
+          115deg,
+          transparent 24%,
+          rgb(255 255 255 / 0.07),
+          transparent 45%
+        );
+        transform: translateX(-120%);
+        animation: console-glint 9s ease-in-out infinite;
+      }
+
+      .console-grid {
+        background-image:
+          linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      .signal-line {
+        stroke-dasharray: 10 13;
+        animation: signal-dash 1.8s linear infinite;
+      }
+
+      .signal-packet {
+        filter: drop-shadow(0 0 8px currentColor);
+      }
+
+      .packet-one {
+        offset-path: path("M 8 105 C 110 20 210 20 320 105 S 515 190 620 105");
+        animation: packet-run 7s linear infinite;
+      }
+
+      .packet-two {
+        offset-path: path("M 8 105 C 110 190 210 190 320 105 S 515 20 620 105");
+        animation: packet-run 7s 3.5s linear infinite;
+      }
+
+      .hero-stage {
+        transition:
+          color 0.35s ease,
+          border-color 0.35s ease,
+          background-color 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      .hero-stage[data-active="true"] {
+        color: white;
+        border-color: rgb(85 214 255 / 0.7);
+        background: rgb(22 132 255 / 0.16);
+        transform: translateY(-4px);
+        box-shadow: 0 0 25px rgb(22 132 255 / 0.2);
+      }
+
+      .hero-stage[data-complete="true"]::before {
+        background: #b8f45d;
+        box-shadow: 0 0 9px rgb(184 244 93 / 0.8);
+      }
+
+      .live-card {
+        animation: card-float 6s ease-in-out infinite;
+      }
+
+      .live-card:nth-child(2) {
+        animation-delay: -3s;
+      }
+
+      .status-dot {
+        animation: status-pulse 2s ease-in-out infinite;
+      }
+
+      .ticker-track {
+        width: max-content;
+        animation: ticker 34s linear infinite;
+      }
+
+      .flow-tab {
+        transition:
+          color 0.3s ease,
+          border-color 0.3s ease,
+          background-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .flow-tab[aria-selected="true"] {
+        color: white;
+        border-color: rgb(85 214 255 / 0.75);
+        background: linear-gradient(
+          135deg,
+          rgb(22 132 255 / 0.18),
+          rgb(143 107 255 / 0.12)
+        );
+        transform: translateY(-3px);
+      }
+
+      .flow-tab[aria-selected="true"] .flow-number {
+        color: #55d6ff;
+      }
+
+      .flow-progress::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: var(--flow-progress, 12.5%);
+        border-radius: inherit;
+        background: linear-gradient(90deg, #1684ff, #55d6ff, #ff3f8e);
+        transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .stage-panel.is-changing > * {
+        animation: panel-enter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .stage-panel.is-changing > *:nth-child(2) {
+        animation-delay: 70ms;
+      }
+
+      .evidence-row {
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      .stage-panel.is-changing .evidence-row {
+        animation: evidence-in 0.48s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        animation-delay: calc(var(--row) * 90ms);
+      }
+
+      .mission-option[aria-checked="true"] {
+        color: white;
+        border-color: rgb(255 255 255 / 0.26);
+        background: rgb(255 255 255 / 0.08);
+        box-shadow: inset 3px 0 #55d6ff;
+      }
+
+      .mission-option[aria-checked="true"] .option-icon {
+        transform: rotate(-5deg) scale(1.08);
+        border-color: rgb(85 214 255 / 0.55);
+        background: rgb(22 132 255 / 0.16);
+      }
+
+      .brief-card.is-changing .brief-value {
+        animation: brief-swap 0.45s ease both;
+      }
+
+      .approval-scan {
+        animation: approval-scan 4.5s ease-in-out infinite;
+      }
+
+      .receipt-line {
+        transform-origin: left;
+        animation: receipt-line 4.8s ease-in-out infinite;
+        animation-delay: calc(var(--receipt) * 0.7s);
+      }
+
+      .budget-ring {
+        background: conic-gradient(
+          #55d6ff 0 72%,
+          rgb(255 255 255 / 0.08) 72% 100%
+        );
+        animation: ring-glow 3.2s ease-in-out infinite;
+      }
+
+      .institution-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .institution-card::after {
+        content: "";
+        position: absolute;
+        inset: -60%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at center,
+          var(--glow, rgb(22 132 255 / 0.18)),
+          transparent 42%
+        );
+        opacity: 0;
+        transform: scale(0.7);
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s ease;
+      }
+
+      .institution-card:hover::after,
+      .institution-card:focus-within::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .institution-card .institution-mark {
+        transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .institution-card:hover .institution-mark {
+        transform: rotate(-7deg) scale(1.12);
+      }
+
+      .output-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 2px;
+        transform: scaleX(0.12);
+        transform-origin: left;
+        background: linear-gradient(90deg, #1684ff, #55d6ff, #ff3f8e);
+        transition: transform 0.7s ease;
+      }
+
+      .output-card.is-visible::before {
+        transform: scaleX(1);
+      }
+
+      .cta-orbit {
+        animation: orbit-spin 24s linear infinite;
+      }
+
+      @keyframes aurora-drift {
+        from {
+          transform: translate3d(-4%, -2%, 0) scale(0.96);
+        }
+        to {
+          transform: translate3d(8%, 6%, 0) scale(1.12);
+        }
+      }
+
+      @keyframes orb-breathe {
+        0%,
+        100% {
+          transform: scale(0.96);
+          opacity: 0.72;
+        }
+        50% {
+          transform: scale(1.06);
+          opacity: 1;
+        }
+      }
+
+      @keyframes button-sheen {
+        0%,
+        68%,
+        100% {
+          transform: translateX(-140%) skewX(-12deg);
+        }
+        82% {
+          transform: translateX(520%) skewX(-12deg);
+        }
+      }
+
+      @keyframes console-glint {
+        0%,
+        65%,
+        100% {
+          transform: translateX(-120%);
+        }
+        82% {
+          transform: translateX(170%);
+        }
+      }
+
+      @keyframes signal-dash {
+        to {
+          stroke-dashoffset: -46;
+        }
+      }
+
+      @keyframes packet-run {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        8%,
+        88% {
+          opacity: 1;
+        }
+        100% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
+      }
+
+      @keyframes card-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      @keyframes status-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgb(184 244 93 / 0);
+        }
+        50% {
+          box-shadow: 0 0 0 7px rgb(184 244 93 / 0.08);
+        }
+      }
+
+      @keyframes ticker {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes panel-enter {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+          filter: blur(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes evidence-in {
+        from {
+          opacity: 0;
+          transform: translateX(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes brief-swap {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes approval-scan {
+        0%,
+        100% {
+          transform: translateY(-130%);
+          opacity: 0;
+        }
+        18%,
+        70% {
+          opacity: 0.55;
+        }
+        82% {
+          transform: translateY(560%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes receipt-line {
+        0%,
+        15% {
+          transform: scaleX(0.08);
+          opacity: 0.25;
+        }
+        35%,
+        80% {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scaleX(1);
+          opacity: 0.4;
+        }
+      }
+
+      @keyframes ring-glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 0 rgb(85 214 255 / 0));
+        }
+        50% {
+          filter: drop-shadow(0 0 12px rgb(85 214 255 / 0.26));
+        }
+      }
+
+      @keyframes orbit-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .mission-console {
+          transform: none;
+        }
+        .packet-one,
+        .packet-two {
+          offset-path: path("M 6 92 C 120 12 220 172 344 92");
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+        .signal-packet,
+        .approval-scan {
+          display: none;
+        }
+        .ticker-track {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="sr-only fixed left-4 top-4 z-[100] rounded-lg bg-white px-4 py-2 font-semibold text-ink shadow-xl focus:not-sr-only"
+    >
+      Skip to content
+    </a>
+
+    <div
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="page-grid absolute inset-0"></div>
+      <div
+        class="aurora absolute -left-32 top-24 size-[34rem] rounded-full bg-blue/40"
+      ></div>
+      <div
+        class="aurora absolute -right-48 top-[38rem] size-[38rem] rounded-full bg-pink/30 [animation-delay:-8s]"
+      ></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 border-b border-white/8 bg-ink/80 backdrop-blur-2xl"
+    >
+      <nav
+        class="container-page flex h-17 items-center justify-between"
+        aria-label="Primary navigation"
+      >
+        <a
+          href="#top"
+          class="group flex items-center gap-3"
+          aria-label="Tokdio home"
+        >
+          <span
+            class="relative grid size-9 place-items-center overflow-hidden rounded-lg border border-white/15 bg-white/[0.06] text-sm font-extrabold text-white"
+            aria-hidden="true"
+          >
+            <span
+              class="absolute inset-0 bg-gradient-to-br from-blue/50 via-transparent to-pink/40 opacity-80"
+            ></span>
+            <span class="relative">T</span>
+          </span>
+          <span class="text-lg font-bold tracking-tight text-white md:text-xl"
+            >tokdio</span
+          >
+          <span
+            class="hidden rounded-full border border-cyan/20 bg-cyan/8 px-2 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-cyan sm:inline-flex"
+            >Mission systems</span
+          >
+        </a>
+
+        <div class="hidden items-center gap-7 lg:flex">
+          <a
+            class="text-sm text-slate-400 transition hover:text-white"
+            href="#mission"
+            >Mission flow</a
+          >
+          <a
+            class="text-sm text-slate-400 transition hover:text-white"
+            href="#control"
+            >Human control</a
+          >
+          <a
+            class="text-sm text-slate-400 transition hover:text-white"
+            href="#institutions"
+            >Institutions</a
+          >
+          <a
+            class="text-sm text-slate-400 transition hover:text-white"
+            href="#answers"
+            >Answers</a
+          >
+        </div>
+
+        <a
+          class="button-primary min-h-10 px-4 text-xs md:min-h-11 md:text-sm"
+          href="mailto:mission@tokdio.com?subject=Give%20Tokdio%20a%20mission"
+        >
+          <span class="relative">Give us a mission</span>
+          <span class="relative" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section
+        id="top"
+        class="relative overflow-hidden pb-12 pt-16 md:pb-16 md:pt-24 lg:pt-28"
+      >
+        <div class="container-page relative">
+          <div
+            class="hero-orb pointer-events-none absolute left-[58%] top-[30%] -z-10 size-[32rem] -translate-x-1/2 rounded-full blur-3xl"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="grid items-start gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 xl:gap-20"
+          >
+            <div class="max-w-3xl lg:sticky lg:top-28">
+              <p class="eyebrow reveal is-visible">
+                AI-native operating company
+              </p>
+              <h1
+                class="reveal is-visible mt-6 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94] [--delay:80ms]"
+              >
+                Give Tokdio<br />a mission.<br />
+                <span
+                  class="bg-gradient-to-r from-cyan via-blue to-pink bg-clip-text text-transparent"
+                  >Keep command.</span
+                >
+              </h1>
+              <p
+                class="reveal is-visible mt-7 max-w-2xl text-base text-slate-400 [--delay:160ms] md:text-xl md:leading-relaxed"
+              >
+                Persistent AI crews research, design, build, launch, sell, and
+                support the outcome—inside the authority, budget, and evidence
+                boundaries your people control.
+              </p>
+              <div
+                class="reveal is-visible mt-9 flex flex-col gap-3 sm:flex-row [--delay:240ms]"
+              >
+                <a
+                  class="button-primary"
+                  href="mailto:mission@tokdio.com?subject=Give%20Tokdio%20a%20mission"
+                >
+                  <span class="relative">Give us a mission</span
+                  ><span class="relative" aria-hidden="true">→</span>
+                </a>
+                <a class="button-secondary" href="#mission"
+                  >Watch a mission move</a
+                >
+              </div>
+              <div
+                class="reveal is-visible mt-8 flex flex-wrap gap-2 [--delay:320ms]"
+                aria-label="Operating principles"
+              >
+                <span class="mono-chip"
+                  ><span class="size-1.5 rounded-full bg-lime"></span>Scoped
+                  authority</span
+                >
+                <span class="mono-chip"
+                  ><span class="size-1.5 rounded-full bg-cyan"></span>Evidence
+                  at handoff</span
+                >
+                <span class="mono-chip"
+                  ><span class="size-1.5 rounded-full bg-pink"></span>Human
+                  gates</span
+                >
+              </div>
+            </div>
+
+            <div class="relative min-w-0 lg:pt-2">
+              <div
+                class="mission-console glass-panel relative overflow-hidden rounded-2xl md:rounded-3xl"
+                data-tilt
+              >
+                <div
+                  class="flex items-center justify-between border-b border-white/8 px-4 py-3 md:px-6"
+                >
+                  <div class="flex items-center gap-2">
+                    <span class="size-2.5 rounded-full bg-pink/80"></span>
+                    <span class="size-2.5 rounded-full bg-amber-300/70"></span>
+                    <span class="size-2.5 rounded-full bg-lime/80"></span>
+                  </div>
+                  <p
+                    class="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-slate-500 md:text-[0.68rem]"
+                  >
+                    Olympus · illustrative mission
+                  </p>
+                  <span class="status-dot size-2 rounded-full bg-lime"></span>
+                </div>
+
+                <div
+                  class="console-grid relative min-h-[35rem] overflow-hidden p-4 sm:p-6 md:min-h-[42rem] md:p-8"
+                >
+                  <svg
+                    class="absolute inset-x-0 top-20 h-56 w-full opacity-70"
+                    viewBox="0 0 640 210"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      class="signal-line"
+                      d="M8 105C110 20 210 20 320 105s195 85 312 0"
+                      stroke="url(#signalGradientA)"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      class="signal-line"
+                      d="M8 105c102 85 202 85 312 0s195-85 312 0"
+                      stroke="url(#signalGradientB)"
+                      stroke-width="1.5"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="signalGradientA"
+                        x1="0"
+                        y1="0"
+                        x2="640"
+                        y2="0"
+                      >
+                        <stop stop-color="#55d6ff" stop-opacity="0" />
+                        <stop offset=".45" stop-color="#1684ff" />
+                        <stop
+                          offset="1"
+                          stop-color="#ff3f8e"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                      <linearGradient
+                        id="signalGradientB"
+                        x1="640"
+                        y1="0"
+                        x2="0"
+                        y2="0"
+                      >
+                        <stop stop-color="#8f6bff" stop-opacity="0" />
+                        <stop offset=".5" stop-color="#ff3f8e" />
+                        <stop
+                          offset="1"
+                          stop-color="#55d6ff"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span
+                    class="signal-packet packet-one absolute left-0 top-0 size-2.5 rounded-full bg-cyan text-cyan"
+                    aria-hidden="true"
+                  ></span>
+                  <span
+                    class="signal-packet packet-two absolute left-0 top-0 size-2.5 rounded-full bg-pink text-pink"
+                    aria-hidden="true"
+                  ></span>
+
+                  <div
+                    class="relative z-10 flex items-start justify-between gap-3"
+                  >
+                    <div>
+                      <p
+                        class="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-cyan"
+                      >
+                        Mission TKD-024
+                      </p>
+                      <h2
+                        class="mt-2 max-w-xl text-xl leading-tight md:text-3xl"
+                      >
+                        Reduce checkout abandonment before the seasonal launch.
+                      </h2>
+                    </div>
+                    <span
+                      class="hidden rounded-full border border-lime/20 bg-lime/8 px-3 py-1.5 font-mono text-[0.58rem] uppercase text-lime sm:inline-flex"
+                      >In motion</span
+                    >
+                  </div>
+
+                  <div
+                    class="relative z-10 mt-10 grid grid-cols-4 gap-2 sm:grid-cols-8"
+                    aria-label="Mission lifecycle"
+                  >
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="0"
+                      data-active="true"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Discover</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="1"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Design</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="2"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Build</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="3"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Verify</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="4"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Release</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="5"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Launch</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="6"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Sell</span
+                      >
+                    </div>
+                    <div
+                      class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
+                      data-stage="7"
+                    >
+                      <span
+                        class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
+                      ></span
+                      ><span class="font-mono text-[0.54rem] uppercase"
+                        >Support</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="relative z-10 mt-8 grid gap-3 sm:grid-cols-[1.15fr_.85fr]"
+                  >
+                    <article
+                      class="live-card rounded-xl border border-white/10 bg-ink/85 p-4 shadow-2xl"
+                    >
+                      <div class="flex items-center justify-between gap-4">
+                        <span
+                          id="hero-owner"
+                          class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-cyan"
+                          >Beacon owns this stage</span
+                        >
+                        <span
+                          id="hero-status"
+                          class="rounded-full bg-blue/12 px-2 py-1 font-mono text-[0.55rem] uppercase text-cyan"
+                          >Analysing</span
+                        >
+                      </div>
+                      <p
+                        id="hero-action"
+                        class="mt-4 text-sm font-semibold text-white md:text-base"
+                      >
+                        Reading checkout analytics, session recordings, support
+                        conversations, and sales context.
+                      </p>
+                      <div
+                        class="mt-5 h-1 overflow-hidden rounded-full bg-white/8"
+                      >
+                        <div
+                          id="hero-meter"
+                          class="h-full w-[18%] rounded-full bg-gradient-to-r from-blue via-cyan to-pink transition-all duration-700"
+                        ></div>
+                      </div>
+                    </article>
+
+                    <article
+                      class="live-card rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-2xl"
+                    >
+                      <p
+                        class="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-slate-500"
+                      >
+                        Returning now
+                      </p>
+                      <p
+                        id="hero-output"
+                        class="mt-3 text-sm font-semibold text-white"
+                      >
+                        Problem brief + measurable acceptance criteria
+                      </p>
+                      <p id="hero-evidence" class="mt-2 text-xs text-slate-500">
+                        Evidence: 4 source classes linked
+                      </p>
+                    </article>
+                  </div>
+
+                  <div
+                    class="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-ink/80 px-4 py-3 backdrop-blur sm:bottom-6 sm:left-6 sm:right-6"
+                  >
+                    <p
+                      class="font-mono text-[0.55rem] uppercase tracking-[0.1em] text-slate-500 sm:text-[0.62rem]"
+                    >
+                      Next gate
+                      <span id="hero-gate" class="text-white"
+                        >Approve problem framing</span
+                      >
+                    </p>
+                    <span
+                      class="hidden font-mono text-[0.58rem] text-lime sm:inline"
+                      >No consequential action auto-approved</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-14 overflow-hidden border-y border-white/8 py-4"
+          aria-label="Tokdio mission outputs"
+        >
+          <div
+            class="ticker-track flex items-center gap-10 whitespace-nowrap font-mono text-[0.64rem] uppercase tracking-[0.15em] text-slate-500"
+          >
+            <span>Customer signal</span><span class="text-cyan">◆</span
+            ><span>Problem brief</span><span class="text-blue">◆</span
+            ><span>Experience spec</span><span class="text-violet">◆</span
+            ><span>Reviewable change</span><span class="text-pink">◆</span
+            ><span>Test evidence</span><span class="text-lime">◆</span
+            ><span>Running release</span><span class="text-cyan">◆</span
+            ><span>Market signal</span><span class="text-blue">◆</span
+            ><span>Relationship context</span><span class="text-pink">◆</span
+            ><span>Product learning</span><span class="text-lime">↺</span>
+            <span aria-hidden="true">Customer signal</span
+            ><span aria-hidden="true" class="text-cyan">◆</span
+            ><span aria-hidden="true">Problem brief</span
+            ><span aria-hidden="true" class="text-blue">◆</span
+            ><span aria-hidden="true">Experience spec</span
+            ><span aria-hidden="true" class="text-violet">◆</span
+            ><span aria-hidden="true">Reviewable change</span
+            ><span aria-hidden="true" class="text-pink">◆</span
+            ><span aria-hidden="true">Test evidence</span
+            ><span aria-hidden="true" class="text-lime">◆</span
+            ><span aria-hidden="true">Running release</span
+            ><span aria-hidden="true" class="text-cyan">◆</span
+            ><span aria-hidden="true">Market signal</span
+            ><span aria-hidden="true" class="text-blue">◆</span
+            ><span aria-hidden="true">Relationship context</span
+            ><span aria-hidden="true" class="text-pink">◆</span
+            ><span aria-hidden="true">Product learning</span
+            ><span aria-hidden="true" class="text-lime">↺</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="mission" class="section-pad border-t border-white/8">
+        <div class="container-page">
+          <div
+            class="reveal flex flex-col justify-between gap-8 md:flex-row md:items-end"
+          >
+            <div class="max-w-4xl">
+              <p class="eyebrow">One mission · complete loop</p>
+              <h2 class="mt-5 text-4xl leading-[1.02] md:text-6xl lg:text-7xl">
+                Watch the work move—without losing the thread.
+              </h2>
+            </div>
+            <div class="flex items-center gap-3">
+              <button
+                id="flow-toggle"
+                class="button-secondary min-h-10 px-4 text-xs"
+                type="button"
+                aria-pressed="false"
+              >
+                <span id="flow-toggle-icon" aria-hidden="true">Ⅱ</span
+                ><span id="flow-toggle-label">Pause story</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="flow-experience" class="mt-12" data-autoplay="true">
+            <div
+              class="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              <div
+                class="grid min-w-[62rem] grid-cols-8 gap-2"
+                role="tablist"
+                aria-label="Tokdio mission lifecycle"
+              >
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="stage-panel"
+                  tabindex="0"
+                  data-flow-tab="0"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >01</span
+                  ><span class="mt-2 block text-sm font-semibold">Discover</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Beacon</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="1"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >02</span
+                  ><span class="mt-2 block text-sm font-semibold">Design</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Craft</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="2"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >03</span
+                  ><span class="mt-2 block text-sm font-semibold">Build</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Aegis</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="3"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >04</span
+                  ><span class="mt-2 block text-sm font-semibold">Verify</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Aegis</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="4"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >05</span
+                  ><span class="mt-2 block text-sm font-semibold">Release</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Aegis</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="5"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >06</span
+                  ><span class="mt-2 block text-sm font-semibold">Launch</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Rally</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="6"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >07</span
+                  ><span class="mt-2 block text-sm font-semibold">Sell</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Thread</span
+                  >
+                </button>
+                <button
+                  type="button"
+                  class="flow-tab rounded-xl border border-white/8 bg-white/[0.02] p-4 text-left"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="stage-panel"
+                  tabindex="-1"
+                  data-flow-tab="7"
+                >
+                  <span
+                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                    >08</span
+                  ><span class="mt-2 block text-sm font-semibold">Support</span
+                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
+                    >Relay</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="flow-progress relative mt-3 h-1 overflow-hidden rounded-full bg-white/8"
+              aria-hidden="true"
+            ></div>
+
+            <div
+              id="stage-panel"
+              class="stage-panel glass-panel mt-6 grid overflow-hidden rounded-2xl lg:grid-cols-[0.9fr_1.1fr]"
+              role="tabpanel"
+              tabindex="0"
+            >
+              <div
+                class="relative overflow-hidden border-b border-white/8 p-6 md:p-9 lg:border-b-0 lg:border-r"
+              >
+                <div
+                  class="absolute -right-24 -top-24 size-64 rounded-full bg-blue/12 blur-3xl"
+                  aria-hidden="true"
+                ></div>
+                <p id="stage-owner" class="eyebrow">Beacon owns Discover</p>
+                <h3 id="stage-title" class="mt-5 text-3xl md:text-5xl">
+                  Turn signals into a decision worth funding.
+                </h3>
+                <p id="stage-story" class="mt-5 max-w-2xl text-slate-400">
+                  Research customer conversations, product analytics,
+                  operational evidence, market context, and business
+                  constraints.
+                </p>
+                <div class="mt-9 grid gap-3 sm:grid-cols-2">
+                  <div class="rounded-xl border border-white/8 bg-ink/50 p-4">
+                    <p
+                      class="font-mono text-[0.58rem] uppercase text-slate-600"
+                    >
+                      Output
+                    </p>
+                    <p
+                      id="stage-output"
+                      class="mt-2 text-sm font-semibold text-white"
+                    >
+                      Problem brief + business case
+                    </p>
+                  </div>
+                  <div class="rounded-xl border border-white/8 bg-ink/50 p-4">
+                    <p
+                      class="font-mono text-[0.58rem] uppercase text-slate-600"
+                    >
+                      Human gate
+                    </p>
+                    <p
+                      id="stage-gate"
+                      class="mt-2 text-sm font-semibold text-white"
+                    >
+                      Approve problem framing
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-panel/70 p-6 md:p-9">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p
+                      class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-slate-500"
+                    >
+                      Stage evidence
+                    </p>
+                    <p class="mt-2 text-sm text-slate-400">
+                      Nothing moves forward as invisible work.
+                    </p>
+                  </div>
+                  <span
+                    id="stage-state"
+                    class="rounded-full border border-cyan/20 bg-cyan/8 px-3 py-1 font-mono text-[0.58rem] uppercase text-cyan"
+                    >In review</span
+                  >
+                </div>
+                <div class="mt-7 space-y-3">
+                  <div
+                    class="evidence-row rounded-xl border border-white/8 bg-white/[0.025] p-4 [--row:1]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="grid size-8 shrink-0 place-items-center rounded-lg bg-blue/10 text-blue"
+                        >↳</span
+                      >
+                      <div>
+                        <p
+                          id="evidence-one"
+                          class="text-sm font-semibold text-white"
+                        >
+                          Checkout analytics segmented
+                        </p>
+                        <p class="mt-1 text-xs text-slate-500">
+                          Source linked · confidence visible
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="evidence-row rounded-xl border border-white/8 bg-white/[0.025] p-4 [--row:2]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="grid size-8 shrink-0 place-items-center rounded-lg bg-violet/10 text-violet"
+                        >↳</span
+                      >
+                      <div>
+                        <p
+                          id="evidence-two"
+                          class="text-sm font-semibold text-white"
+                        >
+                          Support themes reconciled
+                        </p>
+                        <p class="mt-1 text-xs text-slate-500">
+                          Conflicts retained · no invented certainty
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="evidence-row rounded-xl border border-white/8 bg-white/[0.025] p-4 [--row:3]"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="grid size-8 shrink-0 place-items-center rounded-lg bg-pink/10 text-pink"
+                        >✓</span
+                      >
+                      <div>
+                        <p
+                          id="evidence-three"
+                          class="text-sm font-semibold text-white"
+                        >
+                          Acceptance criteria drafted
+                        </p>
+                        <p class="mt-1 text-xs text-slate-500">
+                          Owner decision requested
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad border-y border-white/8 bg-white/[0.015]">
+        <div
+          class="container-page grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start"
+        >
+          <div class="reveal lg:sticky lg:top-28">
+            <p class="eyebrow">Start from where the work is</p>
+            <h2 class="mt-5 text-4xl md:text-6xl">
+              A goal, a backlog, a risk, or a mess.
+            </h2>
+            <p class="mt-6 max-w-xl text-slate-400">
+              Tokdio assembles the smallest institution set that can own the
+              outcome. Choose a starting point to preview the mission shape.
+            </p>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-[0.78fr_1.22fr]">
+            <div
+              class="space-y-3"
+              role="radiogroup"
+              aria-label="Mission starting point"
+            >
+              <button
+                class="mission-option glass-panel flex w-full items-center gap-4 rounded-xl p-4 text-left"
+                type="button"
+                role="radio"
+                aria-checked="true"
+                data-mission="signal"
+              >
+                <span
+                  class="option-icon grid size-11 shrink-0 place-items-center rounded-xl border border-white/8 bg-white/[0.03] text-cyan transition"
+                  >◌</span
+                ><span
+                  ><span class="block text-sm font-semibold text-white"
+                    >Customer signal</span
+                  ><span class="mt-1 block text-xs text-slate-500"
+                    >Something customers keep telling you</span
+                  ></span
+                >
+              </button>
+              <button
+                class="mission-option glass-panel flex w-full items-center gap-4 rounded-xl p-4 text-left"
+                type="button"
+                role="radio"
+                aria-checked="false"
+                data-mission="launch"
+              >
+                <span
+                  class="option-icon grid size-11 shrink-0 place-items-center rounded-xl border border-white/8 bg-white/[0.03] text-pink transition"
+                  >↗</span
+                ><span
+                  ><span class="block text-sm font-semibold text-white"
+                    >Product launch</span
+                  ><span class="mt-1 block text-xs text-slate-500"
+                    >An idea that needs a complete route</span
+                  ></span
+                >
+              </button>
+              <button
+                class="mission-option glass-panel flex w-full items-center gap-4 rounded-xl p-4 text-left"
+                type="button"
+                role="radio"
+                aria-checked="false"
+                data-mission="risk"
+              >
+                <span
+                  class="option-icon grid size-11 shrink-0 place-items-center rounded-xl border border-white/8 bg-white/[0.03] text-amber-300 transition"
+                  >△</span
+                ><span
+                  ><span class="block text-sm font-semibold text-white"
+                    >Operational risk</span
+                  ><span class="mt-1 block text-xs text-slate-500"
+                    >A failure that must become controlled</span
+                  ></span
+                >
+              </button>
+              <button
+                class="mission-option glass-panel flex w-full items-center gap-4 rounded-xl p-4 text-left"
+                type="button"
+                role="radio"
+                aria-checked="false"
+                data-mission="growth"
+              >
+                <span
+                  class="option-icon grid size-11 shrink-0 place-items-center rounded-xl border border-white/8 bg-white/[0.03] text-lime transition"
+                  >⌁</span
+                ><span
+                  ><span class="block text-sm font-semibold text-white"
+                    >Growth bottleneck</span
+                  ><span class="mt-1 block text-xs text-slate-500"
+                    >Demand, conversion, or retention is stuck</span
+                  ></span
+                >
+              </button>
+            </div>
+
+            <article
+              id="brief-card"
+              class="brief-card glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
+              aria-live="polite"
+            >
+              <div
+                class="absolute -right-24 -top-24 size-56 rounded-full bg-cyan/10 blur-3xl"
+                aria-hidden="true"
+              ></div>
+              <div class="relative flex items-center justify-between">
+                <p
+                  class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-cyan"
+                >
+                  Mission preview
+                </p>
+                <span
+                  class="rounded-full border border-white/8 px-3 py-1 font-mono text-[0.55rem] uppercase text-slate-500"
+                  >Illustrative</span
+                >
+              </div>
+              <h3
+                id="brief-title"
+                class="brief-value relative mt-5 text-2xl md:text-3xl"
+              >
+                Find and fix the recurring checkout friction.
+              </h3>
+              <dl class="relative mt-8 space-y-5">
+                <div class="border-t border-white/8 pt-4">
+                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
+                    Assemble
+                  </dt>
+                  <dd
+                    id="brief-crew"
+                    class="brief-value mt-2 text-sm font-semibold text-white"
+                  >
+                    Beacon → Craft → Aegis
+                  </dd>
+                </div>
+                <div class="border-t border-white/8 pt-4">
+                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
+                    First evidence
+                  </dt>
+                  <dd
+                    id="brief-evidence"
+                    class="brief-value mt-2 text-sm text-slate-300"
+                  >
+                    Customer conversations + product analytics
+                  </dd>
+                </div>
+                <div class="border-t border-white/8 pt-4">
+                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
+                    Owner decision
+                  </dt>
+                  <dd
+                    id="brief-gate"
+                    class="brief-value mt-2 text-sm text-slate-300"
+                  >
+                    Approve the problem and success measure
+                  </dd>
+                </div>
+              </dl>
+              <a
+                class="button-secondary relative mt-8 w-full"
+                href="mailto:mission@tokdio.com?subject=Scope%20a%20Tokdio%20mission"
+                >Scope this kind of mission <span aria-hidden="true">→</span></a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="control" class="section-pad">
+        <div class="container-page">
+          <div class="reveal mx-auto max-w-5xl text-center">
+            <p class="eyebrow">Olympus Mission Control</p>
+            <h2 class="mt-5 text-4xl md:text-6xl lg:text-7xl">
+              Speed, without disappearing accountability.
+            </h2>
+            <p class="mx-auto mt-6 max-w-3xl text-slate-400">
+              Your people set intent, authority, budgets, approvals, and proof.
+              Crews keep the bounded work moving.
+            </p>
+            <p
+              class="mx-auto mt-4 inline-flex rounded-full border border-amber-300/15 bg-amber-300/[0.06] px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-amber-200"
+            >
+              Product demonstration · illustrative data
+            </p>
+          </div>
+
+          <div
+            class="mt-12 grid auto-rows-[minmax(15rem,auto)] gap-4 lg:grid-cols-2"
+          >
+            <article
+              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:60ms]"
+              data-tilt
+            >
+              <div
+                class="approval-scan pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-transparent via-cyan/8 to-transparent"
+              ></div>
+              <p class="eyebrow">Human gate</p>
+              <h3 class="mt-4 text-2xl md:text-3xl">
+                Approval arrives before action.
+              </h3>
+              <p class="mt-3 max-w-xl text-sm text-slate-400">
+                Production, publication, material spend, and other consequential
+                steps remain explicit decisions.
+              </p>
+              <div
+                class="mt-7 rounded-xl border border-pink/20 bg-pink/[0.055] p-4"
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="font-mono text-[0.56rem] uppercase text-pink">
+                      Owner decision required
+                    </p>
+                    <p class="mt-2 text-sm font-semibold text-white">
+                      Release checkout recovery to production?
+                    </p>
+                  </div>
+                  <span
+                    class="rounded-full border border-pink/20 px-2 py-1 font-mono text-[0.5rem] uppercase text-pink"
+                    >Waiting</span
+                  >
+                </div>
+                <div class="mt-4 flex gap-2">
+                  <span
+                    class="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-ink"
+                    >Review evidence</span
+                  ><span
+                    class="rounded-lg border border-white/10 px-3 py-2 text-xs text-slate-500"
+                    >No auto-approve</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:120ms]"
+              data-tilt
+            >
+              <p class="eyebrow">Evidence chain</p>
+              <h3 class="mt-4 text-2xl md:text-3xl">
+                Every handoff leaves a receipt.
+              </h3>
+              <p class="mt-3 text-sm text-slate-400">
+                Sources, decisions, tests, costs, verification, and failure
+                states travel with the work.
+              </p>
+              <div class="mt-7 space-y-3">
+                <div class="flex items-center gap-3">
+                  <span class="size-2 rounded-full bg-cyan"></span
+                  ><span
+                    class="receipt-line h-px flex-1 bg-gradient-to-r from-cyan to-transparent [--receipt:1]"
+                  ></span
+                  ><span
+                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                    >Source linked</span
+                  >
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="size-2 rounded-full bg-blue"></span
+                  ><span
+                    class="receipt-line h-px flex-1 bg-gradient-to-r from-blue to-transparent [--receipt:2]"
+                  ></span
+                  ><span
+                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                    >Change reviewed</span
+                  >
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="size-2 rounded-full bg-lime"></span
+                  ><span
+                    class="receipt-line h-px flex-1 bg-gradient-to-r from-lime to-transparent [--receipt:3]"
+                  ></span
+                  ><span
+                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                    >Proof returned</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:180ms]"
+              data-tilt
+            >
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <p class="eyebrow">Mission economics</p>
+                  <h3 class="mt-4 text-2xl md:text-3xl">
+                    The budget line stays visible.
+                  </h3>
+                  <p class="mt-3 max-w-md text-sm text-slate-400">
+                    Spend is evidence too. Unknown cost stays unknown instead of
+                    becoming a clean zero.
+                  </p>
+                </div>
+                <div
+                  class="budget-ring grid size-24 shrink-0 place-items-center rounded-full p-2"
+                >
+                  <div
+                    class="grid size-full place-items-center rounded-full bg-panel"
+                  >
+                    <span class="font-mono text-sm text-white">72%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-7 grid grid-cols-3 gap-3">
+                <div class="rounded-lg bg-white/[0.035] p-3">
+                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
+                    Cap
+                  </p>
+                  <p class="mt-2 text-sm font-semibold text-white">Owner set</p>
+                </div>
+                <div class="rounded-lg bg-white/[0.035] p-3">
+                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
+                    Used
+                  </p>
+                  <p class="mt-2 text-sm font-semibold text-white">Visible</p>
+                </div>
+                <div class="rounded-lg bg-white/[0.035] p-3">
+                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
+                    Unknown
+                  </p>
+                  <p class="mt-2 text-sm font-semibold text-amber-200">
+                    Flagged
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="glass-panel reveal relative overflow-hidden rounded-2xl p-6 md:p-8 [--delay:240ms]"
+              data-tilt
+            >
+              <p class="eyebrow">Truthful failure</p>
+              <h3 class="mt-4 text-2xl md:text-3xl">
+                Unavailable is not success.
+              </h3>
+              <p class="mt-3 max-w-xl text-sm text-slate-400">
+                Missing sources, blocked authority, failed verification, and
+                unavailable systems remain visible.
+              </p>
+              <div class="mt-7 grid gap-3 sm:grid-cols-2">
+                <div
+                  class="rounded-xl border border-amber-300/15 bg-amber-300/[0.045] p-4"
+                >
+                  <p class="font-mono text-[0.55rem] uppercase text-amber-200">
+                    Blocked
+                  </p>
+                  <p class="mt-2 text-sm font-semibold text-white">
+                    Release credential unavailable
+                  </p>
+                  <p class="mt-2 text-xs text-slate-500">
+                    Awaiting owner-scoped access
+                  </p>
+                </div>
+                <div
+                  class="rounded-xl border border-white/8 bg-white/[0.025] p-4"
+                >
+                  <p class="font-mono text-[0.55rem] uppercase text-slate-500">
+                    Next safe action
+                  </p>
+                  <p class="mt-2 text-sm font-semibold text-white">
+                    Keep production unchanged
+                  </p>
+                  <p class="mt-2 text-xs text-slate-500">
+                    Evidence retained for resume
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="institutions"
+        class="section-pad border-y border-white/8 bg-white/[0.015]"
+      >
+        <div class="container-page">
+          <div class="reveal max-w-5xl">
+            <p class="eyebrow">Accountable capability</p>
+            <h2 class="mt-5 text-4xl md:text-6xl lg:text-7xl">
+              One company. Six institutions that own outcomes.
+            </h2>
+            <p class="mt-6 max-w-3xl text-slate-400">
+              Visitors meet the lifecycle first. Institutions enter when it is
+              time to show who carries responsibility.
+            </p>
+          </div>
+
+          <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--glow:rgb(85_214_255_/_0.2)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-cyan/20 bg-cyan/8 font-mono text-cyan"
+              >
+                B
+              </div>
+              <p class="eyebrow mt-8">Discover · Decide</p>
+              <h3 class="mt-3 text-2xl">Beacon</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Turns customer, product, market, support, and sales signals into
+                requirements, priorities, and the next mission.
+              </p>
+            </article>
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:60ms] [--glow:rgb(255_63_142_/_0.2)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-pink/20 bg-pink/8 font-mono text-pink"
+              >
+                C
+              </div>
+              <p class="eyebrow mt-8 !text-pink">Design · Create</p>
+              <h3 class="mt-3 text-2xl">Craft</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Shapes journeys, interfaces, prototypes, copy, image, audio, and
+                video into experiences ready to build or distribute.
+              </p>
+            </article>
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:120ms] [--glow:rgb(22_132_255_/_0.22)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-blue/20 bg-blue/8 font-mono text-blue"
+              >
+                A
+              </div>
+              <p class="eyebrow mt-8 !text-blue">Build · Verify · Operate</p>
+              <h3 class="mt-3 text-2xl">Aegis</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Architects, builds, tests, secures, deploys, observes, repairs,
+                and maintains meaningful software with evidence.
+              </p>
+            </article>
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--glow:rgb(143_107_255_/_0.22)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-violet/20 bg-violet/8 font-mono text-violet"
+              >
+                R
+              </div>
+              <p class="eyebrow mt-8 !text-violet">Launch · Grow</p>
+              <h3 class="mt-3 text-2xl">Rally</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Activates positioning through launches, content, SEO, campaigns,
+                creative, experiments, and market learning.
+              </p>
+            </article>
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:60ms] [--glow:rgb(184_244_93_/_0.18)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-lime/20 bg-lime/8 font-mono text-lime"
+              >
+                T
+              </div>
+              <p class="eyebrow mt-8 !text-lime">Sell · Retain</p>
+              <h3 class="mt-3 text-2xl">Thread</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Keeps prospecting, conversations, proposals, pipeline,
+                onboarding, renewals, and expansion connected.
+              </p>
+            </article>
+            <article
+              class="institution-card glass-panel reveal rounded-2xl p-6 [--delay:120ms] [--glow:rgb(255_184_77_/_0.18)]"
+            >
+              <div
+                class="institution-mark grid size-12 place-items-center rounded-xl border border-amber-300/20 bg-amber-300/[0.07] font-mono text-amber-200"
+              >
+                R
+              </div>
+              <p class="eyebrow mt-8 !text-amber-200">Support · Learn</p>
+              <h3 class="mt-3 text-2xl">Relay</h3>
+              <p class="relative z-10 mt-3 text-sm text-slate-400">
+                Resolves conversations from verified knowledge, escalates
+                uncertainty, and carries recurring pain into the next decision.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad">
+        <div class="container-page">
+          <div
+            class="reveal grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
+          >
+            <div>
+              <p class="eyebrow">The return package</p>
+              <h2 class="mt-5 text-4xl md:text-6xl">
+                A completed mission returns more than an answer.
+              </h2>
+            </div>
+            <p class="max-w-2xl text-slate-400 lg:justify-self-end">
+              It returns reviewable outputs, operating evidence, preserved
+              context, explicit uncertainty, and the next product signal.
+            </p>
+          </div>
+          <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <article
+              class="output-card glass-panel reveal relative rounded-2xl p-6"
+            >
+              <span class="font-mono text-[0.58rem] uppercase text-cyan"
+                >01 · Direction</span
+              >
+              <h3 class="mt-5 text-xl">A decision-ready brief</h3>
+              <p class="mt-3 text-sm text-slate-500">
+                Problem, business case, requirement, acceptance criteria, and
+                named owner.
+              </p>
+            </article>
+            <article
+              class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:70ms]"
+            >
+              <span class="font-mono text-[0.58rem] uppercase text-blue"
+                >02 · Production</span
+              >
+              <h3 class="mt-5 text-xl">Reviewable work</h3>
+              <p class="mt-3 text-sm text-slate-500">
+                Design, software, campaigns, relationship actions, or support
+                resolutions.
+              </p>
+            </article>
+            <article
+              class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:140ms]"
+            >
+              <span class="font-mono text-[0.58rem] uppercase text-pink"
+                >03 · Proof</span
+              >
+              <h3 class="mt-5 text-xl">Evidence and economics</h3>
+              <p class="mt-3 text-sm text-slate-500">
+                Sources, reviews, verification state, cost context, approvals,
+                and failures.
+              </p>
+            </article>
+            <article
+              class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:210ms]"
+            >
+              <span class="font-mono text-[0.58rem] uppercase text-lime"
+                >04 · Learning</span
+              >
+              <h3 class="mt-5 text-xl">The next signal</h3>
+              <p class="mt-3 text-sm text-slate-500">
+                Production, market, sales, and support evidence returns to
+                Beacon.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="answers"
+        class="section-pad border-y border-white/8 bg-white/[0.015]"
+      >
+        <div class="container-page grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+          <div class="reveal">
+            <p class="eyebrow">Questions worth answering</p>
+            <h2 class="mt-5 text-4xl md:text-5xl">
+              Before you commission a second workforce.
+            </h2>
+          </div>
+          <div class="reveal divide-y divide-white/10 border-y border-white/10">
+            <details class="group py-6" open>
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
+              >
+                Is Tokdio software or an agency?<span
+                  class="font-mono text-cyan transition group-open:rotate-45"
+                  >+</span
+                >
+              </summary>
+              <p class="mt-4 max-w-3xl text-sm text-slate-400">
+                Tokdio is an AI-native operating company. You commission an
+                accountable capability and outcome; Tokdio supplies persistent
+                crews, operating systems, tools, and human control.
+              </p>
+            </details>
+            <details class="group py-6">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
+              >
+                Do we need every institution?<span
+                  class="font-mono text-cyan transition group-open:rotate-45"
+                  >+</span
+                >
+              </summary>
+              <p class="mt-4 max-w-3xl text-sm text-slate-400">
+                No. Tokdio assembles the smallest responsible institution set
+                for the mission. A narrow engineering repair may need only
+                Aegis; a launch may connect Beacon, Craft, Aegis, and Rally.
+              </p>
+            </details>
+            <details class="group py-6">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
+              >
+                What decisions stay human?<span
+                  class="font-mono text-cyan transition group-open:rotate-45"
+                  >+</span
+                >
+              </summary>
+              <p class="mt-4 max-w-3xl text-sm text-slate-400">
+                Authority is mission-specific. Sensitive publication, material
+                spend, production mutation, contractual commitments, and final
+                accountability remain inside explicit owner-defined gates.
+              </p>
+            </details>
+            <details class="group py-6">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
+              >
+                What happens when evidence is missing?<span
+                  class="font-mono text-cyan transition group-open:rotate-45"
+                  >+</span
+                >
+              </summary>
+              <p class="mt-4 max-w-3xl text-sm text-slate-400">
+                The gap remains visible. Crews surface uncertainty, blocked
+                access, unavailable systems, and failed verification instead of
+                converting them into invented confidence.
+              </p>
+            </details>
+            <details class="group py-6">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
+              >
+                How do we start?<span
+                  class="font-mono text-cyan transition group-open:rotate-45"
+                  >+</span
+                >
+              </summary>
+              <p class="mt-4 max-w-3xl text-sm text-slate-400">
+                Bring a goal, backlog, risk, customer signal, or operating mess.
+                Tokdio clarifies the outcome, proof, constraints, authority,
+                budget, and first safe action.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative overflow-hidden py-24 md:py-36">
+        <div
+          class="cta-orbit pointer-events-none absolute left-1/2 top-1/2 size-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-cyan/15"
+          aria-hidden="true"
+        >
+          <span
+            class="absolute left-1/2 top-0 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan shadow-[0_0_20px_rgba(85,214,255,.8)]"
+          ></span
+          ><span
+            class="absolute bottom-[8%] right-[8%] size-2 rounded-full bg-pink shadow-[0_0_18px_rgba(255,63,142,.8)]"
+          ></span>
+        </div>
+        <div class="container-page relative text-center">
+          <p class="eyebrow reveal">The mission is the starting line</p>
+          <h2
+            class="reveal mx-auto mt-6 max-w-6xl text-5xl leading-[0.96] md:text-7xl lg:text-8xl [--delay:80ms]"
+          >
+            Give Tokdio work that should already be moving.
+          </h2>
+          <p
+            class="reveal mx-auto mt-7 max-w-2xl text-slate-400 [--delay:160ms]"
+          >
+            Send the goal, backlog, signal, risk, or mess. We will identify the
+            institution, scope the authority, and assemble the crew.
+          </p>
+          <div
+            class="reveal mt-9 flex flex-col justify-center gap-3 sm:flex-row [--delay:240ms]"
+          >
+            <a
+              class="button-primary"
+              href="mailto:mission@tokdio.com?subject=Give%20Tokdio%20a%20mission"
+              ><span class="relative">mission@tokdio.com</span
+              ><span class="relative">→</span></a
+            ><a class="button-secondary" href="#mission">Replay the mission</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/8 py-8">
+      <div
+        class="container-page flex flex-col gap-5 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <span class="font-semibold text-white">tokdio</span
+          ><span class="ml-3">Humans set direction. Crews keep it moving.</span>
+        </div>
+        <a
+          class="transition hover:text-white"
+          href="mailto:mission@tokdio.com?subject=Give%20Tokdio%20a%20mission"
+          >Start a mission →</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        var stages = [
+          {
+            owner: "Beacon owns Discover",
+            title: "Turn signals into a decision worth funding.",
+            story:
+              "Research customer conversations, product analytics, operational evidence, market context, and business constraints.",
+            output: "Problem brief + business case",
+            gate: "Approve problem framing",
+            state: "In review",
+            action:
+              "Reading checkout analytics, session recordings, support conversations, and sales context.",
+            status: "Analysing",
+            evidence: "Evidence: 4 source classes linked",
+            rows: [
+              "Checkout analytics segmented",
+              "Support themes reconciled",
+              "Acceptance criteria drafted",
+            ],
+          },
+          {
+            owner: "Craft owns Design",
+            title: "Give the decision a form people can use.",
+            story:
+              "Map the journey, prototype the flow, write interface copy, and create the experience and creative specification.",
+            output: "Build-ready experience spec",
+            gate: "Approve the experience",
+            state: "Prototyping",
+            action:
+              "Mapping the failure journey and testing three recovery concepts against the approved requirement.",
+            status: "Shaping",
+            evidence: "Evidence: prototype + decision log",
+            rows: [
+              "Journey friction mapped",
+              "Recovery variants prototyped",
+              "Experience decision recorded",
+            ],
+          },
+          {
+            owner: "Aegis owns Build",
+            title: "Turn the approved experience into reviewable change.",
+            story:
+              "Implement application, data, integrations, infrastructure, and migrations against the accepted requirement.",
+            output: "Reviewable implementation",
+            gate: "Approve consequential scope",
+            state: "Building",
+            action:
+              "Implementing the recovery path with scoped repository and data authority.",
+            status: "Building",
+            evidence: "Evidence: changes linked to requirement",
+            rows: [
+              "Implementation scoped",
+              "Changes linked to brief",
+              "Review context assembled",
+            ],
+          },
+          {
+            owner: "Aegis owns Verify",
+            title: "Prove the work before confidence travels.",
+            story:
+              "Run functional, integration, regression, accessibility, performance, quality, security, and independent verification.",
+            output: "Release verdict + test evidence",
+            gate: "Accept residual risk",
+            state: "Verifying",
+            action:
+              "Running critical-path, accessibility, security, and regression evidence against the release candidate.",
+            status: "Verifying",
+            evidence: "Evidence: passing and failing proof retained",
+            rows: [
+              "Critical path exercised",
+              "Quality findings resolved",
+              "Release verdict prepared",
+            ],
+          },
+          {
+            owner: "Aegis owns Release",
+            title: "Move the change while keeping a safe return path.",
+            story:
+              "Deploy, migrate, observe health and errors, and roll back or remediate when evidence requires it.",
+            output: "Running release + deploy receipt",
+            gate: "Approve production mutation",
+            state: "Awaiting owner",
+            action:
+              "Release candidate is ready. Production remains unchanged until the owner gate clears.",
+            status: "Human gate",
+            evidence: "Evidence: deploy plan + rollback path",
+            rows: [
+              "Release candidate sealed",
+              "Rollback path verified",
+              "Production approval requested",
+            ],
+          },
+          {
+            owner: "Rally owns Launch",
+            title: "Bring the release and its market together.",
+            story:
+              "Activate positioning through content, SEO, email, social, creative, campaigns, ads, and measurable experiments.",
+            output: "Published launch + attribution",
+            gate: "Approve public claims",
+            state: "Activating",
+            action:
+              "Preparing the launch narrative, channel plan, creative package, and attribution contract.",
+            status: "Activating",
+            evidence: "Evidence: claims mapped to proof",
+            rows: [
+              "Positioning aligned",
+              "Creative package reviewed",
+              "Attribution activated",
+            ],
+          },
+          {
+            owner: "Thread owns Sell",
+            title: "Turn demand into a relationship that remembers.",
+            story:
+              "Prospect, qualify, preserve CRM context, manage proposals, onboarding, renewal, and expansion.",
+            output: "Relationship record + next action",
+            gate: "Approve commercial commitment",
+            state: "Engaging",
+            action:
+              "Connecting qualified demand to relationship context, commitments, and accountable next actions.",
+            status: "Engaging",
+            evidence: "Evidence: commitments attributed",
+            rows: [
+              "Demand qualified",
+              "Context preserved",
+              "Next action owned",
+            ],
+          },
+          {
+            owner: "Relay owns Support",
+            title: "Resolve the issue and return the learning.",
+            story:
+              "Answer from verified knowledge, triage conversations, escalate uncertainty, and detect recurring customer pain.",
+            output: "Resolution + next product signal",
+            gate: "Approve knowledge promotion",
+            state: "Learning",
+            action:
+              "Resolving customer conversations and routing recurring friction back into the next Beacon decision.",
+            status: "Closing loop",
+            evidence: "Evidence: resolution + recurring theme",
+            rows: [
+              "Resolution verified",
+              "Knowledge candidate drafted",
+              "Signal returned to Beacon",
+            ],
+          },
+        ];
+
+        var missions = {
+          signal: {
+            title: "Find and fix the recurring checkout friction.",
+            crew: "Beacon → Craft → Aegis",
+            evidence: "Customer conversations + product analytics",
+            gate: "Approve the problem and success measure",
+          },
+          launch: {
+            title: "Take the new product from concept to market learning.",
+            crew: "Beacon → Craft → Aegis → Rally",
+            evidence: "Market case + approved experience",
+            gate: "Approve scope, release, and public claims",
+          },
+          risk: {
+            title: "Contain the failure and build a verified safe path.",
+            crew: "Aegis → Relay → Beacon",
+            evidence: "Logs + incidents + affected customer context",
+            gate: "Approve production mutation and residual risk",
+          },
+          growth: {
+            title: "Find where demand stops and restore the loop.",
+            crew: "Beacon → Rally → Thread → Relay",
+            evidence: "Attribution + pipeline + customer conversations",
+            gate: "Approve the experiment and spend boundary",
+          },
+        };
+
+        var currentStage = 0;
+        var storyPaused = reduceMotion.matches;
+        var flowTimer = null;
+        var flowExperience = document.getElementById("flow-experience");
+        var stagePanel = document.getElementById("stage-panel");
+        var flowTabs = Array.prototype.slice.call(
+          document.querySelectorAll("[data-flow-tab]"),
+        );
+        var heroStages = Array.prototype.slice.call(
+          document.querySelectorAll("[data-stage]"),
+        );
+
+        function text(id, value) {
+          var node = document.getElementById(id);
+          if (node) node.textContent = value;
+        }
+
+        function setStage(index, userInitiated) {
+          currentStage = (index + stages.length) % stages.length;
+          var stage = stages[currentStage];
+          flowTabs.forEach(function (tab, tabIndex) {
+            var active = tabIndex === currentStage;
+            tab.setAttribute("aria-selected", String(active));
+            tab.setAttribute("tabindex", active ? "0" : "-1");
+          });
+          heroStages.forEach(function (node, nodeIndex) {
+            node.setAttribute(
+              "data-active",
+              String(nodeIndex === currentStage),
+            );
+            node.setAttribute(
+              "data-complete",
+              String(nodeIndex < currentStage),
+            );
+          });
+          document.documentElement.style.setProperty(
+            "--flow-progress",
+            String((currentStage + 1) * 12.5) + "%",
+          );
+          text("stage-owner", stage.owner);
+          text("stage-title", stage.title);
+          text("stage-story", stage.story);
+          text("stage-output", stage.output);
+          text("stage-gate", stage.gate);
+          text("stage-state", stage.state);
+          text("evidence-one", stage.rows[0]);
+          text("evidence-two", stage.rows[1]);
+          text("evidence-three", stage.rows[2]);
+          text("hero-owner", stage.owner);
+          text("hero-status", stage.status);
+          text("hero-action", stage.action);
+          text("hero-output", stage.output);
+          text("hero-evidence", stage.evidence);
+          text("hero-gate", stage.gate);
+          var meter = document.getElementById("hero-meter");
+          if (meter)
+            meter.style.width = String((currentStage + 1) * 12.5) + "%";
+          if (stagePanel) {
+            stagePanel.classList.remove("is-changing");
+            void stagePanel.offsetWidth;
+            stagePanel.classList.add("is-changing");
+          }
+          if (userInitiated) restartStory();
+        }
+
+        function startStory() {
+          window.clearInterval(flowTimer);
+          if (storyPaused || reduceMotion.matches || document.hidden) return;
+          flowTimer = window.setInterval(function () {
+            setStage(currentStage + 1, false);
+          }, 4800);
+        }
+
+        function restartStory() {
+          window.clearInterval(flowTimer);
+          if (!storyPaused) startStory();
+        }
+
+        function updateToggle() {
+          var button = document.getElementById("flow-toggle");
+          if (!button) return;
+          button.setAttribute("aria-pressed", String(storyPaused));
+          text("flow-toggle-icon", storyPaused ? "▶" : "Ⅱ");
+          text("flow-toggle-label", storyPaused ? "Play story" : "Pause story");
+        }
+
+        flowTabs.forEach(function (tab, index) {
+          tab.addEventListener("click", function () {
+            setStage(index, true);
+          });
+          tab.addEventListener("keydown", function (event) {
+            if (
+              event.key !== "ArrowRight" &&
+              event.key !== "ArrowLeft" &&
+              event.key !== "Home" &&
+              event.key !== "End"
+            )
+              return;
+            event.preventDefault();
+            var target =
+              event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? stages.length - 1
+                  : currentStage + (event.key === "ArrowRight" ? 1 : -1);
+            setStage(target, true);
+            flowTabs[currentStage].focus();
+          });
+        });
+
+        var flowToggle = document.getElementById("flow-toggle");
+        if (flowToggle)
+          flowToggle.addEventListener("click", function () {
+            storyPaused = !storyPaused;
+            updateToggle();
+            startStory();
+          });
+        if (flowExperience) {
+          flowExperience.addEventListener("mouseenter", function () {
+            window.clearInterval(flowTimer);
+          });
+          flowExperience.addEventListener("mouseleave", startStory);
+          flowExperience.addEventListener("focusin", function () {
+            window.clearInterval(flowTimer);
+          });
+          flowExperience.addEventListener("focusout", function (event) {
+            if (!flowExperience.contains(event.relatedTarget)) startStory();
+          });
+        }
+
+        Array.prototype.slice
+          .call(document.querySelectorAll("[data-mission]"))
+          .forEach(function (button) {
+            button.addEventListener("click", function () {
+              var mission = missions[button.getAttribute("data-mission")];
+              Array.prototype.slice
+                .call(document.querySelectorAll("[data-mission]"))
+                .forEach(function (item) {
+                  item.setAttribute("aria-checked", String(item === button));
+                });
+              var card = document.getElementById("brief-card");
+              if (card) {
+                card.classList.remove("is-changing");
+                void card.offsetWidth;
+                card.classList.add("is-changing");
+              }
+              text("brief-title", mission.title);
+              text("brief-crew", mission.crew);
+              text("brief-evidence", mission.evidence);
+              text("brief-gate", mission.gate);
+            });
+          });
+
+        if ("IntersectionObserver" in window && !reduceMotion.matches) {
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          Array.prototype.slice
+            .call(document.querySelectorAll(".reveal:not(.is-visible)"))
+            .forEach(function (node) {
+              observer.observe(node);
+            });
+        } else {
+          Array.prototype.slice
+            .call(document.querySelectorAll(".reveal"))
+            .forEach(function (node) {
+              node.classList.add("is-visible");
+            });
+        }
+
+        if (
+          !reduceMotion.matches &&
+          window.matchMedia("(pointer: fine)").matches
+        ) {
+          Array.prototype.slice
+            .call(document.querySelectorAll("[data-tilt]"))
+            .forEach(function (card) {
+              card.addEventListener("pointermove", function (event) {
+                var rect = card.getBoundingClientRect();
+                var x = (event.clientX - rect.left) / rect.width - 0.5;
+                var y = (event.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform =
+                  "perspective(1400px) rotateX(" +
+                  String(y * -3) +
+                  "deg) rotateY(" +
+                  String(x * 3) +
+                  "deg) translateY(-2px)";
+              });
+              card.addEventListener("pointerleave", function () {
+                card.style.transform = "";
+              });
+            });
+        }
+
+        document.addEventListener("visibilitychange", startStory);
+        reduceMotion.addEventListener("change", function (event) {
+          storyPaused = event.matches;
+          updateToggle();
+          startStory();
+        });
+        setStage(0, false);
+        updateToggle();
+        startStory();
+      })();
+    </script>
+  </body>
+</html>
