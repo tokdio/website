@@ -72,6 +72,10 @@
         :focus-visible {
           @apply outline-2 outline-offset-4 outline-cyan;
         }
+
+        summary::-webkit-details-marker {
+          display: none;
+        }
       }
 
       @layer components {
@@ -103,7 +107,7 @@
         }
 
         .button-secondary {
-          @apply border border-white/15 bg-white/[0.03] text-white backdrop-blur hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.07];
+          @apply border border-white/20 bg-white/[0.03] text-white backdrop-blur hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.07];
         }
 
         .button-primary:disabled,
@@ -116,7 +120,7 @@
         }
 
         .field-input {
-          @apply mt-2 w-full rounded-xl border border-white/12 bg-ink/75 px-4 py-3 font-sans text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan/60 focus:ring-2 focus:ring-cyan/15;
+          @apply mt-2 w-full rounded-xl border border-white/12 bg-ink/75 px-4 py-3 font-sans text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan/60 focus:ring-2 focus:ring-cyan/15;
         }
 
         .glass-panel {
@@ -736,7 +740,7 @@
           <a
             class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#mission"
-            >How it works</a
+            >Mission flow</a
           >
           <a
             class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
@@ -746,12 +750,12 @@
           <a
             class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#institutions"
-            >Capabilities</a
+            >Institutions</a
           >
           <a
             class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
             href="#answers"
-            >Questions</a
+            >Answers</a
           >
         </div>
       </nav>
@@ -760,7 +764,7 @@
     <main id="main">
       <section
         id="top"
-        class="relative overflow-hidden pb-12 pt-16 md:pb-16 md:pt-24 lg:pt-28"
+        class="relative overflow-hidden pb-12 pt-10 md:pb-16 md:pt-14"
       >
         <div class="container-page relative">
           <div
@@ -776,7 +780,7 @@
                 Human-governed mission system
               </p>
               <h1
-                class="reveal is-visible mt-6 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94] [--delay:80ms]"
+                class="reveal is-visible mt-5 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94] [--delay:80ms]"
               >
                 Give Tokdio<br />a mission.<br />
                 <span
@@ -785,7 +789,7 @@
                 >
               </h1>
               <p
-                class="reveal is-visible mt-7 max-w-2xl text-base text-slate-400 [--delay:160ms] md:text-xl md:leading-relaxed"
+                class="reveal is-visible mt-6 max-w-2xl text-base text-slate-400 [--delay:160ms] md:text-xl md:leading-relaxed"
               >
                 Turn a customer signal, engineering risk, launch, or growth
                 bottleneck into reviewable work. Tokdio scopes the crew,
@@ -793,7 +797,7 @@
                 consequential moves.
               </p>
               <div
-                class="reveal is-visible mt-9 flex flex-col gap-3 sm:flex-row [--delay:240ms]"
+                class="reveal is-visible mt-8 flex flex-col gap-3 sm:flex-row [--delay:240ms]"
               >
                 <a class="button-primary" href="#mission-brief">
                   <span class="relative">Build a mission brief</span
@@ -804,7 +808,7 @@
                 >
               </div>
               <div
-                class="reveal is-visible mt-8 flex flex-wrap gap-2 [--delay:320ms]"
+                class="reveal is-visible mt-7 flex flex-wrap gap-2 [--delay:320ms]"
                 aria-label="Operating principles"
               >
                 <span class="mono-chip"
@@ -824,6 +828,7 @@
 
             <div class="relative min-w-0 lg:pt-2">
               <div
+                id="hero-console"
                 class="mission-console glass-panel relative overflow-hidden rounded-2xl md:rounded-3xl"
                 data-tilt
               >
@@ -915,11 +920,11 @@
                       >
                         Example mission · TKD-024
                       </p>
-                      <h2
-                        class="mt-2 max-w-xl text-xl leading-tight md:text-3xl"
+                      <p
+                        class="mt-2 max-w-xl text-balance text-xl font-semibold leading-tight tracking-[-0.035em] text-white md:text-3xl"
                       >
                         Reduce checkout abandonment before the seasonal launch.
-                      </h2>
+                      </p>
                     </div>
                     <span
                       class="hidden rounded-full border border-lime/20 bg-lime/8 px-3 py-1.5 font-mono text-xs uppercase text-lime sm:inline-flex"
@@ -1308,7 +1313,8 @@
               class="mt-2 flex items-center justify-between gap-4 font-mono text-xs uppercase tracking-[0.08em] text-slate-500"
             >
               <span id="flow-step">Stage 1 of 8 · Discover</span>
-              <span class="md:hidden">Swipe or use arrow keys</span>
+              <span class="md:hidden">Swipe to explore stages</span>
+              <span class="hidden md:inline">← → keys switch stages</span>
             </div>
 
             <div
@@ -1925,7 +1931,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-cyan/20 bg-cyan/8 font-mono text-cyan"
               >
-                B
+                Be
               </div>
               <p class="eyebrow mt-8">Discover · Decide</p>
               <h3 class="mt-3 text-2xl">Beacon</h3>
@@ -1940,7 +1946,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-pink/20 bg-pink/8 font-mono text-pink"
               >
-                C
+                Cr
               </div>
               <p class="eyebrow mt-8 !text-pink">Design · Create</p>
               <h3 class="mt-3 text-2xl">Craft</h3>
@@ -1955,7 +1961,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-blue/20 bg-blue/8 font-mono text-blue"
               >
-                A
+                Ae
               </div>
               <p class="eyebrow mt-8 !text-blue">Build · Verify · Operate</p>
               <h3 class="mt-3 text-2xl">Aegis</h3>
@@ -1970,7 +1976,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-violet/20 bg-violet/8 font-mono text-violet"
               >
-                R
+                Ra
               </div>
               <p class="eyebrow mt-8 !text-violet">Launch · Grow</p>
               <h3 class="mt-3 text-2xl">Rally</h3>
@@ -1985,7 +1991,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-lime/20 bg-lime/8 font-mono text-lime"
               >
-                B
+                Br
               </div>
               <p class="eyebrow mt-8 !text-lime">Sell · Retain</p>
               <h3 class="mt-3 text-2xl">Bridge</h3>
@@ -2000,7 +2006,7 @@ Find and fix the recurring checkout friction.</textarea
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-amber-300/20 bg-amber-300/[0.07] font-mono text-amber-200"
               >
-                R
+                Re
               </div>
               <p class="eyebrow mt-8 !text-amber-200">Support · Learn</p>
               <h3 class="mt-3 text-2xl">Resolve</h3>
@@ -2217,7 +2223,7 @@ Find and fix the recurring checkout friction.</textarea
 
     <footer class="border-t border-white/8 py-8">
       <div
-        class="container-page flex flex-col gap-5 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between"
+        class="container-page flex flex-col gap-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between"
       >
         <div>
           <span class="font-semibold text-white">tokdio</span
@@ -2595,6 +2601,14 @@ Find and fix the recurring checkout friction.</textarea
           flowExperience.addEventListener("focusout", function (event) {
             if (!flowExperience.contains(event.relatedTarget)) startStory();
           });
+        }
+
+        var heroConsole = document.getElementById("hero-console");
+        if (heroConsole) {
+          heroConsole.addEventListener("mouseenter", function () {
+            window.clearInterval(flowTimer);
+          });
+          heroConsole.addEventListener("mouseleave", startStory);
         }
 
         var outcomeField = document.getElementById("mission-outcome");
