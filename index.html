@@ -6,14 +6,17 @@
     <meta name="robots" content="index, follow" />
     <meta
       name="description"
-      content="Give Tokdio a business outcome. Persistent AI crews move it from signal to shipped, sold, and supported work while your people keep command."
+      content="Turn a customer signal, engineering risk, launch, or growth bottleneck into a reviewable mission brief while authority, evidence, budgets, and human gates stay visible."
     />
     <title>Tokdio — Give us a mission. Keep command.</title>
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tokdio — Give us a mission. Keep command." />
+    <meta
+      property="og:title"
+      content="Tokdio — Give us a mission. Keep command."
+    />
     <meta
       property="og:description"
-      content="Persistent AI crews move business outcomes from signal to shipped, sold, and supported work while your people keep command."
+      content="Turn a customer signal, engineering risk, launch, or growth bottleneck into a reviewable mission brief while authority, evidence, budgets, and human gates stay visible."
     />
     <meta property="og:url" content="https://www.tokdio.com/" />
     <meta name="twitter:card" content="summary" />
@@ -103,12 +106,25 @@
           @apply border border-white/15 bg-white/[0.03] text-white backdrop-blur hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.07];
         }
 
+        .button-primary:disabled,
+        .button-secondary:disabled {
+          @apply cursor-not-allowed opacity-55 hover:translate-y-0;
+        }
+
+        .field-label {
+          @apply block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-slate-400;
+        }
+
+        .field-input {
+          @apply mt-2 w-full rounded-xl border border-white/12 bg-ink/75 px-4 py-3 font-sans text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan/60 focus:ring-2 focus:ring-cyan/15;
+        }
+
         .glass-panel {
           @apply border border-white/10 bg-white/[0.035] shadow-[0_30px_100px_rgba(0,0,0,.35)] backdrop-blur-xl;
         }
 
         .mono-chip {
-          @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[0.66rem] uppercase tracking-[0.08em] text-slate-400;
+          @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-xs uppercase tracking-[0.08em] text-slate-400;
         }
 
         .reveal {
@@ -247,11 +263,17 @@
       }
 
       .flow-tab {
+        scroll-snap-align: center;
         transition:
           color 0.3s ease,
           border-color 0.3s ease,
           background-color 0.3s ease,
           transform 0.3s ease;
+      }
+
+      .flow-rail {
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-inline: contain;
       }
 
       .flow-tab[aria-selected="true"] {
@@ -569,6 +591,15 @@
         .mission-console {
           transform: none;
         }
+        .flow-rail {
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 5%,
+            black 92%,
+            transparent
+          );
+        }
         .packet-one,
         .packet-two {
           offset-path: path("M 6 92 C 120 12 220 172 344 92");
@@ -648,7 +679,7 @@
             >tokdio</span
           >
           <span
-            class="hidden rounded-full border border-cyan/20 bg-cyan/8 px-2 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-cyan sm:inline-flex"
+            class="hidden rounded-full border border-cyan/20 bg-cyan/8 px-2 py-1 font-mono text-xs uppercase tracking-[0.12em] text-cyan sm:inline-flex"
             >Mission systems</span
           >
         </a>
@@ -676,13 +707,53 @@
           >
         </div>
 
-        <a
-          class="button-primary min-h-10 px-4 text-xs md:min-h-11 md:text-sm"
-          href="mailto:hello@tokdio.com?subject=Give%20Tokdio%20a%20mission"
-        >
-          <span class="relative">Give us a mission</span>
-          <span class="relative" aria-hidden="true">↗</span>
-        </a>
+        <div class="flex items-center gap-2">
+          <button
+            id="mobile-menu-toggle"
+            class="grid size-10 place-items-center rounded-lg border border-white/12 bg-white/[0.035] text-lg text-white lg:hidden"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open navigation"
+          >
+            <span id="mobile-menu-icon" aria-hidden="true">☰</span>
+          </button>
+          <a
+            class="button-primary min-h-10 px-3 text-xs sm:px-4 md:min-h-11 md:text-sm"
+            href="#mission-brief"
+          >
+            <span class="relative">Build a brief</span>
+            <span class="relative" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </nav>
+      <nav
+        id="mobile-menu"
+        class="container-page hidden pb-4 lg:hidden"
+        aria-label="Mobile navigation"
+      >
+        <div class="grid grid-cols-2 gap-2 border-t border-white/8 pt-4">
+          <a
+            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            href="#mission"
+            >How it works</a
+          >
+          <a
+            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            href="#control"
+            >Human control</a
+          >
+          <a
+            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            href="#institutions"
+            >Capabilities</a
+          >
+          <a
+            class="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[0.05] hover:text-white"
+            href="#answers"
+            >Questions</a
+          >
+        </div>
       </nav>
     </header>
 
@@ -702,7 +773,7 @@
           >
             <div class="max-w-3xl lg:sticky lg:top-28">
               <p class="eyebrow reveal is-visible">
-                AI-native operating company
+                Human-governed mission system
               </p>
               <h1
                 class="reveal is-visible mt-6 text-[clamp(3.25rem,7vw,6.7rem)] leading-[0.94] [--delay:80ms]"
@@ -716,18 +787,16 @@
               <p
                 class="reveal is-visible mt-7 max-w-2xl text-base text-slate-400 [--delay:160ms] md:text-xl md:leading-relaxed"
               >
-                Persistent AI crews research, design, build, launch, sell, and
-                support the outcome—inside the authority, budget, and evidence
-                boundaries your people control.
+                Turn a customer signal, engineering risk, launch, or growth
+                bottleneck into reviewable work. Tokdio scopes the crew,
+                evidence, authority, and human gates before anything
+                consequential moves.
               </p>
               <div
                 class="reveal is-visible mt-9 flex flex-col gap-3 sm:flex-row [--delay:240ms]"
               >
-                <a
-                  class="button-primary"
-                  href="mailto:hello@tokdio.com?subject=Give%20Tokdio%20a%20mission"
-                >
-                  <span class="relative">Give us a mission</span
+                <a class="button-primary" href="#mission-brief">
+                  <span class="relative">Build a mission brief</span
                   ><span class="relative" aria-hidden="true">→</span>
                 </a>
                 <a class="button-secondary" href="#mission"
@@ -739,16 +808,16 @@
                 aria-label="Operating principles"
               >
                 <span class="mono-chip"
-                  ><span class="size-1.5 rounded-full bg-lime"></span>Scoped
-                  authority</span
+                  ><span class="size-1.5 rounded-full bg-lime"></span>Review
+                  before execution</span
                 >
                 <span class="mono-chip"
-                  ><span class="size-1.5 rounded-full bg-cyan"></span>Evidence
-                  at handoff</span
+                  ><span class="size-1.5 rounded-full bg-cyan"></span>Durable
+                  receipts</span
                 >
                 <span class="mono-chip"
-                  ><span class="size-1.5 rounded-full bg-pink"></span>Human
-                  gates</span
+                  ><span class="size-1.5 rounded-full bg-pink"></span>Truthful
+                  blocked states</span
                 >
               </div>
             </div>
@@ -767,9 +836,9 @@
                     <span class="size-2.5 rounded-full bg-lime/80"></span>
                   </div>
                   <p
-                    class="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-slate-500 md:text-[0.68rem]"
+                    class="font-mono text-xs uppercase tracking-[0.12em] text-slate-400"
                   >
-                    Olympus · illustrative mission
+                    Olympus · confirmation-gated preview
                   </p>
                   <span class="status-dot size-2 rounded-full bg-lime"></span>
                 </div>
@@ -842,9 +911,9 @@
                   >
                     <div>
                       <p
-                        class="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-cyan"
+                        class="font-mono text-xs uppercase tracking-[0.12em] text-cyan"
                       >
-                        Mission TKD-024
+                        Example mission · TKD-024
                       </p>
                       <h2
                         class="mt-2 max-w-xl text-xl leading-tight md:text-3xl"
@@ -853,8 +922,8 @@
                       </h2>
                     </div>
                     <span
-                      class="hidden rounded-full border border-lime/20 bg-lime/8 px-3 py-1.5 font-mono text-[0.58rem] uppercase text-lime sm:inline-flex"
-                      >In motion</span
+                      class="hidden rounded-full border border-lime/20 bg-lime/8 px-3 py-1.5 font-mono text-xs uppercase text-lime sm:inline-flex"
+                      >Scoping</span
                     >
                   </div>
 
@@ -870,9 +939,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Discover</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Discover</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -881,9 +948,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Design</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Design</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -892,9 +957,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Build</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Build</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -903,9 +966,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Verify</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Verify</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -914,9 +975,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Release</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Release</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -925,9 +984,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Launch</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Launch</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -936,9 +993,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Sell</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Sell</span>
                     </div>
                     <div
                       class="hero-stage rounded-lg border border-white/8 bg-ink/70 px-2 py-3 text-center"
@@ -947,9 +1002,7 @@
                       <span
                         class="mx-auto mb-2 block size-1.5 rounded-full bg-current"
                       ></span
-                      ><span class="font-mono text-[0.54rem] uppercase"
-                        >Support</span
-                      >
+                      ><span class="font-mono text-xs uppercase">Support</span>
                     </div>
                   </div>
 
@@ -962,21 +1015,21 @@
                       <div class="flex items-center justify-between gap-4">
                         <span
                           id="hero-owner"
-                          class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-cyan"
-                          >Beacon owns this stage</span
+                          class="font-mono text-xs uppercase tracking-[0.1em] text-cyan"
+                          >Beacon owns Discover</span
                         >
                         <span
                           id="hero-status"
-                          class="rounded-full bg-blue/12 px-2 py-1 font-mono text-[0.55rem] uppercase text-cyan"
-                          >Analysing</span
+                          class="rounded-full bg-blue/12 px-2 py-1 font-mono text-xs uppercase text-cyan"
+                          >Reviewing scope</span
                         >
                       </div>
                       <p
                         id="hero-action"
                         class="mt-4 text-sm font-semibold text-white md:text-base"
                       >
-                        Reading checkout analytics, session recordings, support
-                        conversations, and sales context.
+                        Reconciling customer evidence before proposing bounded
+                        work.
                       </p>
                       <div
                         class="mt-5 h-1 overflow-hidden rounded-full bg-white/8"
@@ -992,7 +1045,7 @@
                       class="live-card rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-2xl"
                     >
                       <p
-                        class="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-slate-500"
+                        class="font-mono text-xs uppercase tracking-[0.1em] text-slate-400"
                       >
                         Returning now
                       </p>
@@ -1000,10 +1053,10 @@
                         id="hero-output"
                         class="mt-3 text-sm font-semibold text-white"
                       >
-                        Problem brief + measurable acceptance criteria
+                        Problem brief + bounded work request
                       </p>
                       <p id="hero-evidence" class="mt-2 text-xs text-slate-500">
-                        Evidence: 4 source classes linked
+                        Sources: analytics, support, customer context
                       </p>
                     </article>
                   </div>
@@ -1012,15 +1065,14 @@
                     class="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-ink/80 px-4 py-3 backdrop-blur sm:bottom-6 sm:left-6 sm:right-6"
                   >
                     <p
-                      class="font-mono text-[0.55rem] uppercase tracking-[0.1em] text-slate-500 sm:text-[0.62rem]"
+                      class="font-mono text-xs uppercase tracking-[0.06em] text-slate-400"
                     >
                       Next gate
                       <span id="hero-gate" class="text-white"
-                        >Approve problem framing</span
+                        >Confirm durable work request</span
                       >
                     </p>
-                    <span
-                      class="hidden font-mono text-[0.58rem] text-lime sm:inline"
+                    <span class="hidden font-mono text-xs text-lime sm:inline"
                       >No consequential action auto-approved</span
                     >
                   </div>
@@ -1030,40 +1082,67 @@
           </div>
         </div>
 
-        <div
-          class="mt-14 overflow-hidden border-y border-white/8 py-4"
-          aria-label="Tokdio mission outputs"
-        >
+        <div class="container-page mt-14">
           <div
-            class="ticker-track flex items-center gap-10 whitespace-nowrap font-mono text-[0.64rem] uppercase tracking-[0.15em] text-slate-500"
+            class="reveal rounded-2xl border border-white/10 bg-white/[0.025] p-5 md:p-7"
           >
-            <span>Customer signal</span><span class="text-cyan">◆</span
-            ><span>Problem brief</span><span class="text-blue">◆</span
-            ><span>Experience spec</span><span class="text-violet">◆</span
-            ><span>Reviewable change</span><span class="text-pink">◆</span
-            ><span>Test evidence</span><span class="text-lime">◆</span
-            ><span>Running release</span><span class="text-cyan">◆</span
-            ><span>Market signal</span><span class="text-blue">◆</span
-            ><span>Relationship context</span><span class="text-pink">◆</span
-            ><span>Product learning</span><span class="text-lime">↺</span>
-            <span aria-hidden="true">Customer signal</span
-            ><span aria-hidden="true" class="text-cyan">◆</span
-            ><span aria-hidden="true">Problem brief</span
-            ><span aria-hidden="true" class="text-blue">◆</span
-            ><span aria-hidden="true">Experience spec</span
-            ><span aria-hidden="true" class="text-violet">◆</span
-            ><span aria-hidden="true">Reviewable change</span
-            ><span aria-hidden="true" class="text-pink">◆</span
-            ><span aria-hidden="true">Test evidence</span
-            ><span aria-hidden="true" class="text-lime">◆</span
-            ><span aria-hidden="true">Running release</span
-            ><span aria-hidden="true" class="text-cyan">◆</span
-            ><span aria-hidden="true">Market signal</span
-            ><span aria-hidden="true" class="text-blue">◆</span
-            ><span aria-hidden="true">Relationship context</span
-            ><span aria-hidden="true" class="text-pink">◆</span
-            ><span aria-hidden="true">Product learning</span
-            ><span aria-hidden="true" class="text-lime">↺</span>
+            <div
+              class="flex flex-col justify-between gap-4 md:flex-row md:items-end"
+            >
+              <div>
+                <p class="eyebrow">The operator flow</p>
+                <h2 class="mt-3 text-2xl md:text-3xl">
+                  From intent to durable work.
+                </h2>
+              </div>
+              <p class="max-w-xl text-sm text-slate-400">
+                Work is created only after explicit review. Availability stays
+                truthful when the connected workspace is read-only or missing.
+              </p>
+            </div>
+            <ol
+              class="mt-7 grid gap-3 md:grid-cols-4"
+              aria-label="Confirmation-gated mission flow"
+            >
+              <li class="rounded-xl border border-white/8 bg-ink/65 p-4">
+                <span class="font-mono text-xs text-cyan">01 · DESCRIBE</span>
+                <p class="mt-3 text-sm font-semibold text-white">
+                  Name one bounded outcome.
+                </p>
+                <p class="mt-2 text-xs text-slate-400">
+                  Start with a signal, risk, launch, backlog, or bottleneck.
+                </p>
+              </li>
+              <li class="rounded-xl border border-white/8 bg-ink/65 p-4">
+                <span class="font-mono text-xs text-blue">02 · REVIEW</span>
+                <p class="mt-3 text-sm font-semibold text-white">
+                  Inspect crew and authority.
+                </p>
+                <p class="mt-2 text-xs text-slate-400">
+                  Evidence, constraints, budget, and human gates stay visible.
+                </p>
+              </li>
+              <li class="rounded-xl border border-white/8 bg-ink/65 p-4">
+                <span class="font-mono text-xs text-pink">03 · CONFIRM</span>
+                <p class="mt-3 text-sm font-semibold text-white">
+                  Create durable work deliberately.
+                </p>
+                <p class="mt-2 text-xs text-slate-400">
+                  No request is silently created and no consequential step
+                  auto-approves.
+                </p>
+              </li>
+              <li class="rounded-xl border border-white/8 bg-ink/65 p-4">
+                <span class="font-mono text-xs text-lime">04 · TRACE</span>
+                <p class="mt-3 text-sm font-semibold text-white">
+                  Follow receipts and blocked states.
+                </p>
+                <p class="mt-2 text-xs text-slate-400">
+                  Completed, waiting, unavailable, and outcome-unknown remain
+                  distinct.
+                </p>
+              </li>
+            </ol>
           </div>
         </div>
       </section>
@@ -1076,7 +1155,7 @@
             <div class="max-w-4xl">
               <p class="eyebrow">One mission · complete loop</p>
               <h2 class="mt-5 text-4xl leading-[1.02] md:text-6xl lg:text-7xl">
-                Watch the work move—without losing the thread.
+                Watch the work move—without losing context.
               </h2>
             </div>
             <div class="flex items-center gap-3">
@@ -1085,16 +1164,23 @@
                 class="button-secondary min-h-10 px-4 text-xs"
                 type="button"
                 aria-pressed="false"
+                aria-describedby="flow-motion-note"
               >
                 <span id="flow-toggle-icon" aria-hidden="true">Ⅱ</span
                 ><span id="flow-toggle-label">Pause story</span>
               </button>
+              <span
+                id="flow-motion-note"
+                class="sr-only"
+                aria-live="polite"
+              ></span>
             </div>
           </div>
 
           <div id="flow-experience" class="mt-12" data-autoplay="true">
             <div
-              class="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              id="flow-rail"
+              class="flow-rail overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               <div
                 class="grid min-w-[62rem] grid-cols-8 gap-2"
@@ -1110,13 +1196,10 @@
                   tabindex="0"
                   data-flow-tab="0"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >01</span
                   ><span class="mt-2 block text-sm font-semibold">Discover</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Beacon</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Beacon</span>
                 </button>
                 <button
                   type="button"
@@ -1127,13 +1210,10 @@
                   tabindex="-1"
                   data-flow-tab="1"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >02</span
                   ><span class="mt-2 block text-sm font-semibold">Design</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Craft</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Craft</span>
                 </button>
                 <button
                   type="button"
@@ -1144,13 +1224,10 @@
                   tabindex="-1"
                   data-flow-tab="2"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >03</span
                   ><span class="mt-2 block text-sm font-semibold">Build</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Aegis</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Aegis</span>
                 </button>
                 <button
                   type="button"
@@ -1161,13 +1238,10 @@
                   tabindex="-1"
                   data-flow-tab="3"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >04</span
                   ><span class="mt-2 block text-sm font-semibold">Verify</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Aegis</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Aegis</span>
                 </button>
                 <button
                   type="button"
@@ -1178,13 +1252,10 @@
                   tabindex="-1"
                   data-flow-tab="4"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >05</span
                   ><span class="mt-2 block text-sm font-semibold">Release</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Aegis</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Aegis</span>
                 </button>
                 <button
                   type="button"
@@ -1195,13 +1266,10 @@
                   tabindex="-1"
                   data-flow-tab="5"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >06</span
                   ><span class="mt-2 block text-sm font-semibold">Launch</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Rally</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Rally</span>
                 </button>
                 <button
                   type="button"
@@ -1212,13 +1280,10 @@
                   tabindex="-1"
                   data-flow-tab="6"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >07</span
                   ><span class="mt-2 block text-sm font-semibold">Sell</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Thread</span
-                  >
+                  ><span class="mt-1 block text-xs text-slate-500">Bridge</span>
                 </button>
                 <button
                   type="button"
@@ -1229,15 +1294,21 @@
                   tabindex="-1"
                   data-flow-tab="7"
                 >
-                  <span
-                    class="flow-number font-mono text-[0.6rem] text-slate-600"
+                  <span class="flow-number font-mono text-xs text-slate-500"
                     >08</span
                   ><span class="mt-2 block text-sm font-semibold">Support</span
-                  ><span class="mt-1 block text-[0.68rem] text-slate-500"
-                    >Relay</span
+                  ><span class="mt-1 block text-xs text-slate-500"
+                    >Resolve</span
                   >
                 </button>
               </div>
+            </div>
+
+            <div
+              class="mt-2 flex items-center justify-between gap-4 font-mono text-xs uppercase tracking-[0.08em] text-slate-500"
+            >
+              <span id="flow-step">Stage 1 of 8 · Discover</span>
+              <span class="md:hidden">Swipe or use arrow keys</span>
             </div>
 
             <div
@@ -1269,29 +1340,25 @@
                 </p>
                 <div class="mt-9 grid gap-3 sm:grid-cols-2">
                   <div class="rounded-xl border border-white/8 bg-ink/50 p-4">
-                    <p
-                      class="font-mono text-[0.58rem] uppercase text-slate-600"
-                    >
+                    <p class="font-mono text-xs uppercase text-slate-400">
                       Output
                     </p>
                     <p
                       id="stage-output"
                       class="mt-2 text-sm font-semibold text-white"
                     >
-                      Problem brief + business case
+                      Problem brief + bounded work request
                     </p>
                   </div>
                   <div class="rounded-xl border border-white/8 bg-ink/50 p-4">
-                    <p
-                      class="font-mono text-[0.58rem] uppercase text-slate-600"
-                    >
+                    <p class="font-mono text-xs uppercase text-slate-400">
                       Human gate
                     </p>
                     <p
                       id="stage-gate"
                       class="mt-2 text-sm font-semibold text-white"
                     >
-                      Approve problem framing
+                      Confirm problem framing and durable request
                     </p>
                   </div>
                 </div>
@@ -1301,7 +1368,7 @@
                 <div class="flex items-center justify-between gap-4">
                   <div>
                     <p
-                      class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-slate-500"
+                      class="font-mono text-xs uppercase tracking-[0.12em] text-slate-400"
                     >
                       Stage evidence
                     </p>
@@ -1311,7 +1378,7 @@
                   </div>
                   <span
                     id="stage-state"
-                    class="rounded-full border border-cyan/20 bg-cyan/8 px-3 py-1 font-mono text-[0.58rem] uppercase text-cyan"
+                    class="rounded-full border border-cyan/20 bg-cyan/8 px-3 py-1 font-mono text-xs uppercase text-cyan"
                     >In review</span
                   >
                 </div>
@@ -1386,18 +1453,22 @@
         </div>
       </section>
 
-      <section class="section-pad border-y border-white/8 bg-white/[0.015]">
+      <section
+        id="mission-brief"
+        class="section-pad border-y border-white/8 bg-white/[0.015]"
+      >
         <div
           class="container-page grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start"
         >
           <div class="reveal lg:sticky lg:top-28">
-            <p class="eyebrow">Start from where the work is</p>
+            <p class="eyebrow">Build a mission brief</p>
             <h2 class="mt-5 text-4xl md:text-6xl">
-              A goal, a backlog, a risk, or a mess.
+              Make the work reviewable before it moves.
             </h2>
             <p class="mt-6 max-w-xl text-slate-400">
-              Tokdio assembles the smallest institution set that can own the
-              outcome. Choose a starting point to preview the mission shape.
+              Start with one outcome, the evidence you already have, and the
+              decision that must stay human. This builder stays in your browser
+              until you choose to send the finished brief.
             </p>
           </div>
 
@@ -1412,6 +1483,7 @@
                 type="button"
                 role="radio"
                 aria-checked="true"
+                tabindex="0"
                 data-mission="signal"
               >
                 <span
@@ -1430,6 +1502,7 @@
                 type="button"
                 role="radio"
                 aria-checked="false"
+                tabindex="-1"
                 data-mission="launch"
               >
                 <span
@@ -1448,6 +1521,7 @@
                 type="button"
                 role="radio"
                 aria-checked="false"
+                tabindex="-1"
                 data-mission="risk"
               >
                 <span
@@ -1466,6 +1540,7 @@
                 type="button"
                 role="radio"
                 aria-checked="false"
+                tabindex="-1"
                 data-mission="growth"
               >
                 <span
@@ -1481,73 +1556,146 @@
               </button>
             </div>
 
-            <article
-              id="brief-card"
-              class="brief-card glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
-              aria-live="polite"
-            >
-              <div
-                class="absolute -right-24 -top-24 size-56 rounded-full bg-cyan/10 blur-3xl"
-                aria-hidden="true"
-              ></div>
-              <div class="relative flex items-center justify-between">
-                <p
-                  class="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-cyan"
+            <form id="mission-brief-form" novalidate>
+              <article
+                id="brief-card"
+                class="brief-card glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8"
+              >
+                <div
+                  class="absolute -right-24 -top-24 size-56 rounded-full bg-cyan/10 blur-3xl"
+                  aria-hidden="true"
+                ></div>
+                <div class="relative flex items-center justify-between gap-4">
+                  <p
+                    class="font-mono text-xs uppercase tracking-[0.12em] text-cyan"
+                  >
+                    Reviewable mission brief
+                  </p>
+                  <span
+                    class="rounded-full border border-white/8 px-3 py-1 font-mono text-xs uppercase text-slate-400"
+                  >
+                    Local draft
+                  </span>
+                </div>
+                <h3
+                  id="brief-title"
+                  class="brief-value relative mt-5 text-2xl md:text-3xl"
                 >
-                  Mission preview
+                  Customer signal → bounded work request
+                </h3>
+
+                <div class="relative mt-7 space-y-5">
+                  <label class="field-label" for="mission-outcome">
+                    Outcome to move
+                    <textarea
+                      id="mission-outcome"
+                      class="field-input min-h-28 resize-y normal-case tracking-normal"
+                      name="outcome"
+                      rows="3"
+                      maxlength="240"
+                      required
+                    >
+Find and fix the recurring checkout friction.</textarea
+                    >
+                  </label>
+                  <label class="field-label" for="mission-evidence">
+                    Evidence already available
+                    <input
+                      id="mission-evidence"
+                      class="field-input normal-case tracking-normal"
+                      name="evidence"
+                      type="text"
+                      maxlength="180"
+                      value="Customer conversations + product analytics"
+                    />
+                  </label>
+                  <label class="field-label" for="mission-gate">
+                    Decision that must stay human
+                    <input
+                      id="mission-gate"
+                      class="field-input normal-case tracking-normal"
+                      name="gate"
+                      type="text"
+                      maxlength="180"
+                      required
+                      value="Approve the problem and success measure"
+                    />
+                  </label>
+                </div>
+
+                <dl class="relative mt-7 grid gap-3 sm:grid-cols-2">
+                  <div class="rounded-xl border border-white/8 bg-ink/55 p-4">
+                    <dt class="font-mono text-xs uppercase text-slate-400">
+                      Proposed crew
+                    </dt>
+                    <dd
+                      id="brief-crew"
+                      class="brief-value mt-2 text-sm font-semibold text-white"
+                    >
+                      Beacon → Craft → Aegis
+                    </dd>
+                  </div>
+                  <div class="rounded-xl border border-white/8 bg-ink/55 p-4">
+                    <dt class="font-mono text-xs uppercase text-slate-400">
+                      First durable action
+                    </dt>
+                    <dd class="mt-2 text-sm text-slate-300">
+                      Create only after explicit confirmation
+                    </dd>
+                  </div>
+                </dl>
+
+                <button
+                  class="button-primary relative mt-7 w-full"
+                  type="submit"
+                >
+                  Build my mission brief <span aria-hidden="true">→</span>
+                </button>
+                <p class="mt-3 text-center text-xs text-slate-500">
+                  Nothing is transmitted when you build the brief.
                 </p>
-                <span
-                  class="rounded-full border border-white/8 px-3 py-1 font-mono text-[0.55rem] uppercase text-slate-500"
-                  >Illustrative</span
+
+                <div
+                  id="brief-result"
+                  class="relative mt-6 hidden rounded-xl border border-lime/20 bg-lime/[0.055] p-5"
+                  role="status"
+                  aria-live="polite"
+                  tabindex="-1"
                 >
-              </div>
-              <h3
-                id="brief-title"
-                class="brief-value relative mt-5 text-2xl md:text-3xl"
-              >
-                Find and fix the recurring checkout friction.
-              </h3>
-              <dl class="relative mt-8 space-y-5">
-                <div class="border-t border-white/8 pt-4">
-                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
-                    Assemble
-                  </dt>
-                  <dd
-                    id="brief-crew"
-                    class="brief-value mt-2 text-sm font-semibold text-white"
+                  <p
+                    class="font-mono text-xs uppercase tracking-[0.1em] text-lime"
                   >
-                    Beacon → Craft → Aegis
-                  </dd>
+                    Brief ready for review
+                  </p>
+                  <p
+                    id="brief-result-summary"
+                    class="mt-3 text-sm text-slate-300"
+                  ></p>
+                  <textarea
+                    id="brief-copy-source"
+                    class="sr-only"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    readonly
+                  ></textarea>
+                  <div class="mt-5 flex flex-col gap-2 sm:flex-row">
+                    <button
+                      id="copy-brief"
+                      class="button-secondary flex-1"
+                      type="button"
+                    >
+                      Copy brief
+                    </button>
+                    <a
+                      id="brief-email"
+                      class="button-secondary flex-1"
+                      href="mailto:mission@tokdio.com"
+                      >Send when ready</a
+                    >
+                  </div>
                 </div>
-                <div class="border-t border-white/8 pt-4">
-                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
-                    First evidence
-                  </dt>
-                  <dd
-                    id="brief-evidence"
-                    class="brief-value mt-2 text-sm text-slate-300"
-                  >
-                    Customer conversations + product analytics
-                  </dd>
-                </div>
-                <div class="border-t border-white/8 pt-4">
-                  <dt class="font-mono text-[0.56rem] uppercase text-slate-600">
-                    Owner decision
-                  </dt>
-                  <dd
-                    id="brief-gate"
-                    class="brief-value mt-2 text-sm text-slate-300"
-                  >
-                    Approve the problem and success measure
-                  </dd>
-                </div>
-              </dl>
-              <a
-                class="button-secondary relative mt-8 w-full"
-                href="mailto:hello@tokdio.com?subject=Scope%20a%20Tokdio%20mission"
-                >Scope this kind of mission <span aria-hidden="true">→</span></a
-              >
-            </article>
+              </article>
+            </form>
           </div>
         </div>
       </section>
@@ -1564,7 +1712,7 @@
               Crews keep the bounded work moving.
             </p>
             <p
-              class="mx-auto mt-4 inline-flex rounded-full border border-amber-300/15 bg-amber-300/[0.06] px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-amber-200"
+              class="mx-auto mt-4 inline-flex rounded-full border border-amber-300/15 bg-amber-300/[0.06] px-3 py-1.5 font-mono text-xs uppercase tracking-[0.1em] text-amber-200"
             >
               Product demonstration · illustrative data
             </p>
@@ -1582,36 +1730,36 @@
               ></div>
               <p class="eyebrow">Human gate</p>
               <h3 class="mt-4 text-2xl md:text-3xl">
-                Approval arrives before action.
+                Confirmation arrives before durable work.
               </h3>
               <p class="mt-3 max-w-xl text-sm text-slate-400">
-                Production, publication, material spend, and other consequential
-                steps remain explicit decisions.
+                The operator reviews the brief before a connected writable
+                workspace receives a work request.
               </p>
               <div
                 class="mt-7 rounded-xl border border-pink/20 bg-pink/[0.055] p-4"
               >
                 <div class="flex items-start justify-between gap-4">
                   <div>
-                    <p class="font-mono text-[0.56rem] uppercase text-pink">
+                    <p class="font-mono text-xs uppercase text-pink">
                       Owner decision required
                     </p>
                     <p class="mt-2 text-sm font-semibold text-white">
-                      Release checkout recovery to production?
+                      Create the checkout-recovery work request?
                     </p>
                   </div>
                   <span
-                    class="rounded-full border border-pink/20 px-2 py-1 font-mono text-[0.5rem] uppercase text-pink"
+                    class="rounded-full border border-pink/20 px-2 py-1 font-mono text-xs uppercase text-pink"
                     >Waiting</span
                   >
                 </div>
                 <div class="mt-4 flex gap-2">
                   <span
                     class="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-ink"
-                    >Review evidence</span
+                    >Review brief</span
                   ><span
                     class="rounded-lg border border-white/10 px-3 py-2 text-xs text-slate-500"
-                    >No auto-approve</span
+                    >No silent create</span
                   >
                 </div>
               </div>
@@ -1623,11 +1771,11 @@
             >
               <p class="eyebrow">Evidence chain</p>
               <h3 class="mt-4 text-2xl md:text-3xl">
-                Every handoff leaves a receipt.
+                Every attempt leaves a receipt.
               </h3>
               <p class="mt-3 text-sm text-slate-400">
-                Sources, decisions, tests, costs, verification, and failure
-                states travel with the work.
+                Sources, decisions, tests, costs, verification, timeouts, and
+                outcome-unknown states travel with the work.
               </p>
               <div class="mt-7 space-y-3">
                 <div class="flex items-center gap-3">
@@ -1635,8 +1783,7 @@
                   ><span
                     class="receipt-line h-px flex-1 bg-gradient-to-r from-cyan to-transparent [--receipt:1]"
                   ></span
-                  ><span
-                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                  ><span class="font-mono text-xs uppercase text-slate-400"
                     >Source linked</span
                   >
                 </div>
@@ -1645,8 +1792,7 @@
                   ><span
                     class="receipt-line h-px flex-1 bg-gradient-to-r from-blue to-transparent [--receipt:2]"
                   ></span
-                  ><span
-                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                  ><span class="font-mono text-xs uppercase text-slate-400"
                     >Change reviewed</span
                   >
                 </div>
@@ -1655,8 +1801,7 @@
                   ><span
                     class="receipt-line h-px flex-1 bg-gradient-to-r from-lime to-transparent [--receipt:3]"
                   ></span
-                  ><span
-                    class="font-mono text-[0.55rem] uppercase text-slate-500"
+                  ><span class="font-mono text-xs uppercase text-slate-400"
                     >Proof returned</span
                   >
                 </div>
@@ -1671,7 +1816,7 @@
                 <div>
                   <p class="eyebrow">Mission economics</p>
                   <h3 class="mt-4 text-2xl md:text-3xl">
-                    The budget line stays visible.
+                    Cost and usage stay visible.
                   </h3>
                   <p class="mt-3 max-w-md text-sm text-slate-400">
                     Spend is evidence too. Unknown cost stays unknown instead of
@@ -1690,19 +1835,19 @@
               </div>
               <div class="mt-7 grid grid-cols-3 gap-3">
                 <div class="rounded-lg bg-white/[0.035] p-3">
-                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
-                    Cap
+                  <p class="font-mono text-xs uppercase text-slate-400">
+                    Boundary
                   </p>
-                  <p class="mt-2 text-sm font-semibold text-white">Owner set</p>
+                  <p class="mt-2 text-sm font-semibold text-white">
+                    Owner named
+                  </p>
                 </div>
                 <div class="rounded-lg bg-white/[0.035] p-3">
-                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
-                    Used
-                  </p>
+                  <p class="font-mono text-xs uppercase text-slate-400">Used</p>
                   <p class="mt-2 text-sm font-semibold text-white">Visible</p>
                 </div>
                 <div class="rounded-lg bg-white/[0.035] p-3">
-                  <p class="font-mono text-[0.5rem] uppercase text-slate-600">
+                  <p class="font-mono text-xs uppercase text-slate-400">
                     Unknown
                   </p>
                   <p class="mt-2 text-sm font-semibold text-amber-200">
@@ -1728,27 +1873,27 @@
                 <div
                   class="rounded-xl border border-amber-300/15 bg-amber-300/[0.045] p-4"
                 >
-                  <p class="font-mono text-[0.55rem] uppercase text-amber-200">
+                  <p class="font-mono text-xs uppercase text-amber-200">
                     Blocked
                   </p>
                   <p class="mt-2 text-sm font-semibold text-white">
-                    Release credential unavailable
+                    Customer lifecycle source unavailable
                   </p>
                   <p class="mt-2 text-xs text-slate-500">
-                    Awaiting owner-scoped access
+                    Missing data is not reported as zero
                   </p>
                 </div>
                 <div
                   class="rounded-xl border border-white/8 bg-white/[0.025] p-4"
                 >
-                  <p class="font-mono text-[0.55rem] uppercase text-slate-500">
+                  <p class="font-mono text-xs uppercase text-slate-400">
                     Next safe action
                   </p>
                   <p class="mt-2 text-sm font-semibold text-white">
-                    Keep production unchanged
+                    Keep the last verified state
                   </p>
                   <p class="mt-2 text-xs text-slate-500">
-                    Evidence retained for resume
+                    Request tenant-scoped evidence before continuing
                   </p>
                 </div>
               </div>
@@ -1768,8 +1913,8 @@
               One company. Six institutions that own outcomes.
             </h2>
             <p class="mt-6 max-w-3xl text-slate-400">
-              Visitors meet the lifecycle first. Institutions enter when it is
-              time to show who carries responsibility.
+              Each mission gets only the capabilities it needs, with one
+              accountable owner at every handoff.
             </p>
           </div>
 
@@ -1840,10 +1985,10 @@
               <div
                 class="institution-mark grid size-12 place-items-center rounded-xl border border-lime/20 bg-lime/8 font-mono text-lime"
               >
-                T
+                B
               </div>
               <p class="eyebrow mt-8 !text-lime">Sell · Retain</p>
-              <h3 class="mt-3 text-2xl">Thread</h3>
+              <h3 class="mt-3 text-2xl">Bridge</h3>
               <p class="relative z-10 mt-3 text-sm text-slate-400">
                 Keeps prospecting, conversations, proposals, pipeline,
                 onboarding, renewals, and expansion connected.
@@ -1858,10 +2003,10 @@
                 R
               </div>
               <p class="eyebrow mt-8 !text-amber-200">Support · Learn</p>
-              <h3 class="mt-3 text-2xl">Relay</h3>
+              <h3 class="mt-3 text-2xl">Resolve</h3>
               <p class="relative z-10 mt-3 text-sm text-slate-400">
-                Resolves conversations from verified knowledge, escalates
-                uncertainty, and carries recurring pain into the next decision.
+                Answers conversations from verified knowledge, escalates
+                uncertainty, and turns recurring pain into product evidence.
               </p>
             </article>
           </div>
@@ -1888,7 +2033,7 @@
             <article
               class="output-card glass-panel reveal relative rounded-2xl p-6"
             >
-              <span class="font-mono text-[0.58rem] uppercase text-cyan"
+              <span class="font-mono text-xs uppercase text-cyan"
                 >01 · Direction</span
               >
               <h3 class="mt-5 text-xl">A decision-ready brief</h3>
@@ -1900,7 +2045,7 @@
             <article
               class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:70ms]"
             >
-              <span class="font-mono text-[0.58rem] uppercase text-blue"
+              <span class="font-mono text-xs uppercase text-blue"
                 >02 · Production</span
               >
               <h3 class="mt-5 text-xl">Reviewable work</h3>
@@ -1912,7 +2057,7 @@
             <article
               class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:140ms]"
             >
-              <span class="font-mono text-[0.58rem] uppercase text-pink"
+              <span class="font-mono text-xs uppercase text-pink"
                 >03 · Proof</span
               >
               <h3 class="mt-5 text-xl">Evidence and economics</h3>
@@ -1924,7 +2069,7 @@
             <article
               class="output-card glass-panel reveal relative rounded-2xl p-6 [--delay:210ms]"
             >
-              <span class="font-mono text-[0.58rem] uppercase text-lime"
+              <span class="font-mono text-xs uppercase text-lime"
                 >04 · Learning</span
               >
               <h3 class="mt-5 text-xl">The next signal</h3>
@@ -1945,7 +2090,7 @@
           <div class="reveal">
             <p class="eyebrow">Questions worth answering</p>
             <h2 class="mt-5 text-4xl md:text-5xl">
-              Before you commission a second workforce.
+              Before consequential work moves.
             </h2>
           </div>
           <div class="reveal divide-y divide-white/10 border-y border-white/10">
@@ -1953,15 +2098,16 @@
               <summary
                 class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-semibold text-white"
               >
-                Is Tokdio software or an agency?<span
+                What is Tokdio in practice?<span
                   class="font-mono text-cyan transition group-open:rotate-45"
                   >+</span
                 >
               </summary>
               <p class="mt-4 max-w-3xl text-sm text-slate-400">
-                Tokdio is an AI-native operating company. You commission an
-                accountable capability and outcome; Tokdio supplies persistent
-                crews, operating systems, tools, and human control.
+                Tokdio is a human-governed mission system—not a self-serve SaaS
+                seat or an autonomous agency. You bring a bounded outcome;
+                Tokdio assembles the crew and operating tools while your people
+                retain authority over consequential decisions.
               </p>
             </details>
             <details class="group py-6">
@@ -2019,9 +2165,10 @@
                 >
               </summary>
               <p class="mt-4 max-w-3xl text-sm text-slate-400">
-                Bring a goal, backlog, risk, customer signal, or operating mess.
-                Tokdio clarifies the outcome, proof, constraints, authority,
-                budget, and first safe action.
+                Build a local mission brief from a goal, backlog, risk, customer
+                signal, or operating mess. Review the outcome, evidence,
+                constraints, authority, budget, and first durable action before
+                choosing to send it.
               </p>
             </details>
           </div>
@@ -2045,23 +2192,24 @@
           <h2
             class="reveal mx-auto mt-6 max-w-6xl text-5xl leading-[0.96] md:text-7xl lg:text-8xl [--delay:80ms]"
           >
-            Give Tokdio work that should already be moving.
+            Make the mission reviewable before it moves.
           </h2>
           <p
             class="reveal mx-auto mt-7 max-w-2xl text-slate-400 [--delay:160ms]"
           >
-            Send the goal, backlog, signal, risk, or mess. We will identify the
-            institution, scope the authority, and assemble the crew.
+            Turn the goal, backlog, signal, risk, or mess into a brief with a
+            bounded outcome, available evidence, proposed crew, and explicit
+            human gate.
           </p>
           <div
             class="reveal mt-9 flex flex-col justify-center gap-3 sm:flex-row [--delay:240ms]"
           >
-            <a
-              class="button-primary"
-              href="mailto:hello@tokdio.com?subject=Give%20Tokdio%20a%20mission"
-              ><span class="relative">hello@tokdio.com</span
+            <a class="button-primary" href="#mission-brief"
+              ><span class="relative">Build a mission brief</span
               ><span class="relative">→</span></a
-            ><a class="button-secondary" href="#mission">Replay the mission</a>
+            ><a class="button-secondary" href="#mission"
+              >Watch the operator flow</a
+            >
           </div>
         </div>
       </section>
@@ -2075,10 +2223,8 @@
           <span class="font-semibold text-white">tokdio</span
           ><span class="ml-3">Humans set direction. Crews keep it moving.</span>
         </div>
-        <a
-          class="transition hover:text-white"
-          href="mailto:hello@tokdio.com?subject=Give%20Tokdio%20a%20mission"
-          >Start a mission →</a
+        <a class="transition hover:text-white" href="index.html"
+          >View all homepage concepts →</a
         >
       </div>
     </footer>
@@ -2090,19 +2236,20 @@
         var reduceMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)",
         );
+        var compactMotion = window.matchMedia("(max-width: 767px)");
         var stages = [
           {
             owner: "Beacon owns Discover",
             title: "Turn signals into a decision worth funding.",
             story:
               "Research customer conversations, product analytics, operational evidence, market context, and business constraints.",
-            output: "Problem brief + business case",
-            gate: "Approve problem framing",
+            output: "Problem brief + bounded work request",
+            gate: "Confirm problem framing and durable request",
             state: "In review",
             action:
-              "Reading checkout analytics, session recordings, support conversations, and sales context.",
-            status: "Analysing",
-            evidence: "Evidence: 4 source classes linked",
+              "Reconciling customer evidence before proposing bounded work.",
+            status: "Reviewing scope",
+            evidence: "Sources: analytics, support, customer context",
             rows: [
               "Checkout analytics segmented",
               "Support themes reconciled",
@@ -2200,7 +2347,7 @@
             ],
           },
           {
-            owner: "Thread owns Sell",
+            owner: "Bridge owns Sell",
             title: "Turn demand into a relationship that remembers.",
             story:
               "Prospect, qualify, preserve CRM context, manage proposals, onboarding, renewal, and expansion.",
@@ -2218,7 +2365,7 @@
             ],
           },
           {
-            owner: "Relay owns Support",
+            owner: "Resolve owns Support",
             title: "Resolve the issue and return the learning.",
             story:
               "Answer from verified knowledge, triage conversations, escalate uncertainty, and detect recurring customer pain.",
@@ -2239,41 +2386,49 @@
 
         var missions = {
           signal: {
-            title: "Find and fix the recurring checkout friction.",
+            title: "Customer signal → bounded work request",
+            outcome: "Find and fix the recurring checkout friction.",
             crew: "Beacon → Craft → Aegis",
             evidence: "Customer conversations + product analytics",
             gate: "Approve the problem and success measure",
           },
           launch: {
-            title: "Take the new product from concept to market learning.",
+            title: "Product launch → complete route to learning",
+            outcome: "Take the new product from concept to market learning.",
             crew: "Beacon → Craft → Aegis → Rally",
             evidence: "Market case + approved experience",
             gate: "Approve scope, release, and public claims",
           },
           risk: {
-            title: "Contain the failure and build a verified safe path.",
-            crew: "Aegis → Relay → Beacon",
+            title: "Operational risk → verified safe path",
+            outcome: "Contain the failure and build a verified safe path.",
+            crew: "Aegis → Resolve → Beacon",
             evidence: "Logs + incidents + affected customer context",
             gate: "Approve production mutation and residual risk",
           },
           growth: {
-            title: "Find where demand stops and restore the loop.",
-            crew: "Beacon → Rally → Thread → Relay",
+            title: "Growth bottleneck → measurable experiment",
+            outcome: "Find where demand stops and restore the loop.",
+            crew: "Beacon → Rally → Bridge → Resolve",
             evidence: "Attribution + pipeline + customer conversations",
             gate: "Approve the experiment and spend boundary",
           },
         };
 
         var currentStage = 0;
-        var storyPaused = reduceMotion.matches;
+        var storyPaused = reduceMotion.matches || compactMotion.matches;
         var flowTimer = null;
         var flowExperience = document.getElementById("flow-experience");
+        var flowRail = document.getElementById("flow-rail");
         var stagePanel = document.getElementById("stage-panel");
         var flowTabs = Array.prototype.slice.call(
           document.querySelectorAll("[data-flow-tab]"),
         );
         var heroStages = Array.prototype.slice.call(
           document.querySelectorAll("[data-stage]"),
+        );
+        var missionOptions = Array.prototype.slice.call(
+          document.querySelectorAll("[data-mission]"),
         );
 
         function text(id, value) {
@@ -2286,6 +2441,7 @@
           var stage = stages[currentStage];
           flowTabs.forEach(function (tab, tabIndex) {
             var active = tabIndex === currentStage;
+            tab.id = "flow-tab-" + String(tabIndex);
             tab.setAttribute("aria-selected", String(active));
             tab.setAttribute("tabindex", active ? "0" : "-1");
           });
@@ -2318,20 +2474,50 @@
           text("hero-output", stage.output);
           text("hero-evidence", stage.evidence);
           text("hero-gate", stage.gate);
+          text(
+            "flow-step",
+            "Stage " +
+              String(currentStage + 1) +
+              " of " +
+              String(stages.length) +
+              " · " +
+              stage.owner.split(" owns ")[1],
+          );
           var meter = document.getElementById("hero-meter");
           if (meter)
             meter.style.width = String((currentStage + 1) * 12.5) + "%";
           if (stagePanel) {
+            stagePanel.setAttribute(
+              "aria-labelledby",
+              "flow-tab-" + String(currentStage),
+            );
             stagePanel.classList.remove("is-changing");
             void stagePanel.offsetWidth;
             stagePanel.classList.add("is-changing");
+          }
+          if (compactMotion.matches && flowRail) {
+            window.requestAnimationFrame(function () {
+              var activeTab = flowTabs[currentStage];
+              var targetLeft =
+                activeTab.offsetLeft -
+                (flowRail.clientWidth - activeTab.clientWidth) / 2;
+              flowRail.scrollTo({
+                left: Math.max(0, targetLeft),
+                behavior:
+                  userInitiated && !reduceMotion.matches ? "smooth" : "auto",
+              });
+            });
           }
           if (userInitiated) restartStory();
         }
 
         function startStory() {
           window.clearInterval(flowTimer);
-          if (storyPaused || reduceMotion.matches || document.hidden) return;
+          var canRun =
+            !storyPaused && !reduceMotion.matches && !document.hidden;
+          if (flowExperience)
+            flowExperience.setAttribute("data-autoplay", String(canRun));
+          if (!canRun) return;
           flowTimer = window.setInterval(function () {
             setStage(currentStage + 1, false);
           }, 4800);
@@ -2344,10 +2530,27 @@
 
         function updateToggle() {
           var button = document.getElementById("flow-toggle");
+          var note = document.getElementById("flow-motion-note");
           if (!button) return;
+          if (reduceMotion.matches) {
+            button.disabled = true;
+            button.setAttribute("aria-pressed", "true");
+            text("flow-toggle-icon", "■");
+            text("flow-toggle-label", "Animation off");
+            if (note)
+              note.textContent =
+                "Animation is disabled by your reduced-motion system preference.";
+            return;
+          }
+          button.disabled = false;
           button.setAttribute("aria-pressed", String(storyPaused));
           text("flow-toggle-icon", storyPaused ? "▶" : "Ⅱ");
           text("flow-toggle-label", storyPaused ? "Play story" : "Pause story");
+          if (note)
+            note.textContent =
+              compactMotion.matches && storyPaused
+                ? "The lifecycle is manual by default on small screens."
+                : "";
         }
 
         flowTabs.forEach(function (tab, index) {
@@ -2394,28 +2597,175 @@
           });
         }
 
-        Array.prototype.slice
-          .call(document.querySelectorAll("[data-mission]"))
-          .forEach(function (button) {
-            button.addEventListener("click", function () {
-              var mission = missions[button.getAttribute("data-mission")];
-              Array.prototype.slice
-                .call(document.querySelectorAll("[data-mission]"))
-                .forEach(function (item) {
-                  item.setAttribute("aria-checked", String(item === button));
-                });
-              var card = document.getElementById("brief-card");
-              if (card) {
-                card.classList.remove("is-changing");
-                void card.offsetWidth;
-                card.classList.add("is-changing");
-              }
-              text("brief-title", mission.title);
-              text("brief-crew", mission.crew);
-              text("brief-evidence", mission.evidence);
-              text("brief-gate", mission.gate);
-            });
+        var outcomeField = document.getElementById("mission-outcome");
+        var evidenceField = document.getElementById("mission-evidence");
+        var gateField = document.getElementById("mission-gate");
+        var briefResult = document.getElementById("brief-result");
+        var briefText = "";
+
+        function selectMission(button, shouldFocus) {
+          var mission = missions[button.getAttribute("data-mission")];
+          missionOptions.forEach(function (item) {
+            var active = item === button;
+            item.setAttribute("aria-checked", String(active));
+            item.setAttribute("tabindex", active ? "0" : "-1");
           });
+          var card = document.getElementById("brief-card");
+          if (card) {
+            card.classList.remove("is-changing");
+            void card.offsetWidth;
+            card.classList.add("is-changing");
+          }
+          text("brief-title", mission.title);
+          text("brief-crew", mission.crew);
+          if (outcomeField) outcomeField.value = mission.outcome;
+          if (evidenceField) evidenceField.value = mission.evidence;
+          if (gateField) gateField.value = mission.gate;
+          if (briefResult) briefResult.classList.add("hidden");
+          if (shouldFocus) button.focus();
+        }
+
+        missionOptions.forEach(function (button, index) {
+          button.addEventListener("click", function () {
+            selectMission(button, false);
+          });
+          button.addEventListener("keydown", function (event) {
+            if (
+              event.key !== "ArrowRight" &&
+              event.key !== "ArrowLeft" &&
+              event.key !== "ArrowDown" &&
+              event.key !== "ArrowUp" &&
+              event.key !== "Home" &&
+              event.key !== "End"
+            )
+              return;
+            event.preventDefault();
+            var nextIndex =
+              event.key === "Home"
+                ? 0
+                : event.key === "End"
+                  ? missionOptions.length - 1
+                  : (index +
+                      (event.key === "ArrowRight" || event.key === "ArrowDown"
+                        ? 1
+                        : -1) +
+                      missionOptions.length) %
+                    missionOptions.length;
+            selectMission(missionOptions[nextIndex], true);
+          });
+        });
+
+        var briefForm = document.getElementById("mission-brief-form");
+        if (briefForm)
+          briefForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var outcome = outcomeField ? outcomeField.value.trim() : "";
+            var evidence = evidenceField ? evidenceField.value.trim() : "";
+            var gate = gateField ? gateField.value.trim() : "";
+            if (outcomeField)
+              outcomeField.setCustomValidity(
+                outcome ? "" : "Name the outcome you want to move.",
+              );
+            if (gateField)
+              gateField.setCustomValidity(
+                gate ? "" : "Name the decision that must stay human.",
+              );
+            if (!briefForm.reportValidity()) return;
+
+            var selected = document.querySelector(
+              '[data-mission][aria-checked="true"]',
+            );
+            var mission = missions[selected.getAttribute("data-mission")];
+            briefText =
+              "TOKDIO MISSION BRIEF\n\n" +
+              "Outcome\n" +
+              outcome +
+              "\n\nEvidence already available\n" +
+              (evidence || "Not yet identified") +
+              "\n\nProposed crew\n" +
+              mission.crew +
+              "\n\nDecision that stays human\n" +
+              gate +
+              "\n\nFirst durable action\nCreate work only after explicit confirmation.";
+
+            text(
+              "brief-result-summary",
+              "Outcome: " +
+                outcome +
+                " Proposed crew: " +
+                mission.crew +
+                ". Human gate: " +
+                gate +
+                ".",
+            );
+            var copySource = document.getElementById("brief-copy-source");
+            if (copySource) copySource.value = briefText;
+            var email = document.getElementById("brief-email");
+            if (email)
+              email.href =
+                "mailto:mission@tokdio.com?subject=" +
+                encodeURIComponent("Tokdio mission: " + outcome.slice(0, 72)) +
+                "&body=" +
+                encodeURIComponent(briefText);
+            if (briefResult) {
+              briefResult.classList.remove("hidden");
+              briefResult.focus();
+            }
+          });
+
+        var copyBrief = document.getElementById("copy-brief");
+        if (copyBrief)
+          copyBrief.addEventListener("click", function () {
+            function copied() {
+              text("copy-brief", "Copied");
+              window.setTimeout(function () {
+                text("copy-brief", "Copy brief");
+              }, 1800);
+            }
+            function fallbackCopy() {
+              var source = document.getElementById("brief-copy-source");
+              if (!source) return;
+              source.select();
+              if (document.execCommand("copy")) copied();
+            }
+            if (navigator.clipboard && window.isSecureContext)
+              navigator.clipboard
+                .writeText(briefText)
+                .then(copied, fallbackCopy);
+            else fallbackCopy();
+          });
+
+        var mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+        var mobileMenu = document.getElementById("mobile-menu");
+
+        function setMobileMenu(open) {
+          if (!mobileMenuToggle || !mobileMenu) return;
+          mobileMenu.classList.toggle("hidden", !open);
+          mobileMenuToggle.setAttribute("aria-expanded", String(open));
+          mobileMenuToggle.setAttribute(
+            "aria-label",
+            open ? "Close navigation" : "Open navigation",
+          );
+          text("mobile-menu-icon", open ? "×" : "☰");
+        }
+
+        if (mobileMenuToggle)
+          mobileMenuToggle.addEventListener("click", function () {
+            setMobileMenu(
+              mobileMenuToggle.getAttribute("aria-expanded") !== "true",
+            );
+          });
+        if (mobileMenu)
+          Array.prototype.slice
+            .call(mobileMenu.querySelectorAll("a"))
+            .forEach(function (link) {
+              link.addEventListener("click", function () {
+                setMobileMenu(false);
+              });
+            });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") setMobileMenu(false);
+        });
 
         if ("IntersectionObserver" in window && !reduceMotion.matches) {
           var observer = new IntersectionObserver(
@@ -2468,10 +2818,16 @@
 
         document.addEventListener("visibilitychange", startStory);
         reduceMotion.addEventListener("change", function (event) {
-          storyPaused = event.matches;
+          storyPaused = event.matches || compactMotion.matches;
           updateToggle();
           startStory();
         });
+        compactMotion.addEventListener("change", function (event) {
+          if (event.matches) storyPaused = true;
+          updateToggle();
+          startStory();
+        });
+        if (missionOptions[0]) selectMission(missionOptions[0], false);
         setStage(0, false);
         updateToggle();
         startStory();
